@@ -1,0 +1,58 @@
+
+.title {
+   font-size: 12px;
+   font-weight: bold;
+}
+.orderCart {
+   border: 3px solid var(--main-color) !important;
+   font-size: 10px;
+   overflow: hidden;
+}
+.item {
+   border-color: var(--main-color) !important;
+   font-size: 10px;
+}
+.showBtn {
+   font-size: 10px;
+   padding: 2px !important;
+}
+
+.expired {
+   font-size: 8px;
+}
+.btnItem{
+   font-size: 8px !important;
+   width: 100px;
+}
+
+
+
+
+
+.sidIcon {
+   width: 50px;
+   background-color: rgb(242, 237, 237);
+   top: 5px;
+   right: -60px;
+   transition: var(--main-transition);
+   -webkit-transition: var(--main-transition);
+   -moz-transition: var(--main-transition);
+   -ms-transition: var(--main-transition);
+   -o-transition: var(--main-transition);
+}
+
+.sidIcon i{
+   font-size: 20px;
+   transition: var(--main-transition);
+   -webkit-transition: var(--main-transition);
+   -moz-transition: var(--main-transition);
+   -ms-transition: var(--main-transition);
+   -o-transition: var(--main-transition);
+}
+.sidIcon i:hover{
+   scale: 1.2;
+}
+
+.orderCart:hover .sidIcon{
+   right: 10px;
+}

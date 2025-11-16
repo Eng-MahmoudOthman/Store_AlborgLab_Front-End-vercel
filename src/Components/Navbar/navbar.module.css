@@ -1,0 +1,114 @@
+
+
+.divHeader {
+   font-size: 12px !important;
+}
+.divMobileImgCover {
+   margin-left:15px;
+   width: 50px;
+   height: 50px;
+   border: 2px solid var(--main-color);
+   overflow: hidden;
+   border-radius: 50%;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+}
+.imgCover {
+   width: 45px;
+   height: 45px;
+   border: 1px solid rgb(255, 255, 255);
+   border-radius: 50%;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+   position: relative;
+   left: 50%;
+   top: 50%;
+   transform:translate(-50% , -50%) ;
+   -webkit-transform:translate(-50% , -50%) ;
+   -moz-transform:translate(-50% , -50%) ;
+   -ms-transform:translate(-50% , -50%) ;
+   -o-transform:translate(-50% , -50%) ;
+}
+
+
+
+.iconTeam{
+   font-size: 20px;
+}
+
+
+.info{
+   margin: -8px 0px  !important;
+}
+.mainIcon{
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   bottom: 10px;
+   left: 50%;
+   font-size: 30px !important;
+   border-radius: 50%;
+   border: 5px solid white !important;
+   transform: translateX(-50%);
+   border: 10px solid var(--main-color);
+   background-color: var(--main-color) !important;
+   -webkit-transform: translateX(-50%);
+   -moz-transform: translateX(-50%);
+   -ms-transform: translateX(-50%);
+   -o-transform: translateX(-50%);
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.consumptionIcon{
+   margin-left: 20px;
+}
+.consumptionIcon p{
+   font-size: 12px;
+}
+.settingIcon p{
+   font-size: 12px;
+}
+.settingIcon{
+   margin-right: 20px;
+}
+.sidebar {
+   border-top-right-radius: 20px;
+   border-top-left-radius: 20px;
+   display: none;
+}
+
+
+.sidebarLarge {
+   top: 85px;
+}
+
+/*Start Media Screen */
+   /* Mobil Screen */
+@media (max-width: 767px) {
+   .sidebarLarge {
+      display: none;
+   }
+   .sidebar {
+      display: block;
+   }
+} ;
+
+                     /* Small Screen */
+@media (min-width: 768px) {
+}
+                     /* Medium Screen */
+@media (min-width:992px){
+}
+                     /* Large Screen */
+@media (min-width:1200px){
+}
+/*End Media Screen */

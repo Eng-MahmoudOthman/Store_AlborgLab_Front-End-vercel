@@ -1,0 +1,60 @@
+/* .text {
+   font-size: 10px;
+}
+.cardImage {
+   width: 50px;
+   height: 50px;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+.imageCard {
+   width: 250px;
+   height: 250px;
+   padding: 6px;
+   top: 50px;
+   left: 50%;
+   border: 1px solid var(--main-color);
+
+   transform: translateX(-50%);
+   -webkit-transform: translateX(-50%);
+   -moz-transform: translateX(-50%);
+   -ms-transform: translateX(-50%);
+   -o-transform: translateX(-50%);
+}
+
+
+.memberCard {
+   padding: 100px 10px 40px;
+}
+
+
+
+
+
+
+.card {
+   min-height: 500px;
+}
+
+.oneDiv {
+   min-height: 200px;
+}
+
+
+
+.circle{
+   width: 200px;
+   height: 200px;
+   bottom: -70px;
+   opacity: 50%;
+   left: -80px;
+}

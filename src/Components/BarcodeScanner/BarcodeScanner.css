@@ -1,0 +1,35 @@
+
+
+
+
+.video-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 6px solid var(--main-color);
+   border-top: 6px solid var(--main-color);
+   overflow: hidden;
+}
+
+video {
+   width: 80%;
+   object-fit: cover; 
+}   
+
+.btn-switch {
+   margin-bottom: 15px;
+   padding: 10px;
+   border: none;
+   border-radius: 5px;
+   background-color: #007bff;
+   color: white;
+   cursor: pointer;
+}
+
+.orderItem {
+   font-size: 10px;
+};
+
+video {
+   height: 400px ;
+};   

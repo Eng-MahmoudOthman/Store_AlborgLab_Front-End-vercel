@@ -1,0 +1,26 @@
+.sidIcon {
+   width: 50px;
+   background-color: rgb(242, 237, 237);
+   top: 4px;
+   right: -60px;
+   transition: var(--main-transition);
+   -webkit-transition: var(--main-transition);
+   -moz-transition: var(--main-transition);
+   -ms-transition: var(--main-transition);
+   -o-transition: var(--main-transition);
+}
+
+.sidIcon i{
+   transition: var(--main-transition);
+   -webkit-transition: var(--main-transition);
+   -moz-transition: var(--main-transition);
+   -ms-transition: var(--main-transition);
+   -o-transition: var(--main-transition);
+}
+.sidIcon i:hover{
+   scale: 1.2;
+}
+
+.card:hover .sidIcon{
+   right: 10px;
+}

@@ -1,0 +1,10 @@
+
+.title {
+   font-size: 12px;
+   font-weight: bold;
+}
+.quantityCart {
+   border: 3px solid var(--main-color) !important;
+   font-size: 10px;
+   overflow: hidden;
+}
