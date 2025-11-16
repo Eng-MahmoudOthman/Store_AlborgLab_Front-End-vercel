@@ -6,7 +6,6 @@ import { useFormik } from 'formik';
 import notification from '../../Utilities/notification.js';
 import style from "./contactUs.module.css";
 import Loading from '../Loading/Loading.jsx';
-import WhatsApp from '../../Assets/images/WhatsApp.png';
 
 
 
@@ -68,7 +67,7 @@ export default function ContactUs() {
                   <Link to={`https://wa.me/201126999142`} className={`btn`}>
                      {/* <i className="fas fa-arrow-right"></i>
                      WhatsApp */}
-                     <img src={WhatsApp} className='w-100' alt="WhatsApp" srcset="" />
+                     <img src="/WhatsApp.png" className='w-100' alt="WhatsApp" srcset="" />
                   </Link>
                </div>
             </section>

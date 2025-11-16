@@ -1,7 +1,6 @@
 import { Fragment, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CustomTitle from '../CustomTitle/CustomTitle.jsx';
-import qrCode from "../../Assets/images/qrCode.png" ;
 import { UserContext } from '../../Context/UserContext.js';
 import isTokenValid from '../../Utilities/checkToken.js';
 
@@ -97,7 +96,7 @@ export default function DevelopedInformation() {
                      <div className="row align-item-center">
                         <div className="col-md-6 text-center mt-4">
                            <div className='w-100 text-center mb-4'>
-                              <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" />
+                              {/* <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" /> */}
                            </div>
                            <Link to={process.env.REACT_APP_FRONT_URL} target='_blank' className='text-primary'>Website Link Click Here !</Link>
                         </div>
@@ -176,7 +175,7 @@ export default function DevelopedInformation() {
                      <div className="row align-item-center">
                         <div className="col-md-6 text-center mt-4">
                            <div className='w-100 text-center mb-4'>
-                              <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" />
+                              {/* <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" /> */}
                            </div>
                            <Link to={process.env.REACT_APP_FRONT_URL} target='_blank' className='text-primary'>Website Link Click Here !</Link>
                         </div>

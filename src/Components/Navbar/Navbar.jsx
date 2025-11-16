@@ -1,6 +1,5 @@
 import {Fragment, useContext} from "react" ;
 import { Link } from "react-router-dom" ;
-import avatar from "../../Assets/images/profile1.png"
 import { UserContext } from "../../Context/UserContext.js";
 import style from "./navbar.module.css"
 import isTokenValid from "../../Utilities/checkToken.js";
@@ -23,10 +22,10 @@ export default function Navbar(){
                            <div  className={`col-2 m-0 ${style.divMobileImgCover}`}>
                               <Link to="/UserProfile">
                                  <img 
-                                    src={loggedUser.image || avatar} 
+                                    src={loggedUser.image || "/profile1.png"} 
                                     onError={(e) => {
                                        e.target.onerror = null ;   // علشان ميعملش loop
-                                       e.target.src = avatar ;     // الصورة الديفولت
+                                       e.target.src = "/profile1.png" ;     // الصورة الديفولت
                                     }}
                                     className={`${style.imgCover}`}
                                     alt="Cover"
@@ -67,7 +66,7 @@ export default function Navbar(){
                            </Link>
 
                            <Link to="/Setting" className={`text-center main-color fw-bold`}>
-                              <i class="fa-solid fa-gear p-0 m-0"></i> Setting 
+                              <i className="fa-solid fa-gear p-0 m-0"></i> Setting 
                            </Link>
                         </div>
                      </div> 

@@ -3,7 +3,6 @@ import { Fragment, useContext } from 'react';
 import style from "./yourTeam.module.css" ;
 import { UserContext } from '../../Context/UserContext.js';
 import { Link } from 'react-router-dom';
-import avatar from "../../Assets/images/profile1.png"
 import Loading from '../Loading/Loading.jsx';
 
 
@@ -40,7 +39,7 @@ export default function YourTeam() {
                                                 <div className={`${style.oneDiv}`}></div>
                                                 <div className="border border-1 rounded-3 shadow-sm m-0">
                                                    <div className={`overflow-hidden ${style.imageCard} position-absolute my-4 `}>
-                                                      <img src={ele.image?.secure_url || avatar} className='img-fluid w-100 h-100 object-fit-contain' alt="" />
+                                                      <img src={ele.image?.secure_url || "/profile1.png"} className='img-fluid w-100 h-100 object-fit-contain' alt="" />
                                                    </div>
 
                                                    <div className={`${style.memberCard} my-2 `}>
@@ -105,7 +104,7 @@ export default function YourTeam() {
    //                               <div className=" my-2">
    //                                     <div className="row align-items-center" >
    //                                        <div className="col-3">
-   //                                           <img src={ele.image?.secure_url || avatar} className={`img-fluid rounded-start  ${style.cardImage}`} alt="..." />
+   //                                           <img src={ele.image?.secure_url || "/profile1.png"} className={`img-fluid rounded-start  ${style.cardImage}`} alt="..." />
    //                                        </div>
 
    //                                        <div className="col-9 p-0">

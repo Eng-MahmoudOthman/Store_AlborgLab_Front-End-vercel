@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 import getGreeting from "../../Utilities/getGreeting.js"
 import { UserContext } from '../../Context/UserContext.js';
 
-import img1 from "../../Assets/slider_Online/slider_online_1.jpg"
-import img2 from "../../Assets/slider_Online/slider_online_2.webp"
-import img3 from "../../Assets/slider_Online/slider_online_3.jpg"
-import img4 from "../../Assets/slider_Online/slider_online_4.jpg"
-import img5 from "../../Assets/slider_Online/slider_online_5.webp"
-import img6 from "../../Assets/slider_Online/slider_online_6.jpg"
-import img7 from "../../Assets/slider_Online/slider_online_7.jpg"
 
 
 import style from "./mainPage.module.css" ;
@@ -41,13 +34,13 @@ export default function MainPage() {
    ] ;
 
    const adverts = [
-      { _id: "Consumption", image: img1  , isActive:false}, 
-      { _id: "Orders"     , image: img2  , isActive:true} , 
-      { _id: "Expired"    , image: img3  , isActive:true} , 
-      { _id: "Members"    , image: img4  , isActive:false}, 
-      { _id: "Received"   , image: img5  , isActive:false}, 
-      { _id: "Transfer"   , image: img6  , isActive:false}, 
-      { _id: "Inventory"  , image: img7  , isActive:false},
+      { _id: "Consumption", image: "/slider_online_1.jpg"  , isActive:false}, 
+      { _id: "Orders"     , image: "/slider_online_2.webp"  , isActive:true} , 
+      { _id: "Expired"    , image: "/slider_online_3.jpg"  , isActive:true} , 
+      { _id: "Members"    , image: "/slider_online_4.jpg"  , isActive:false}, 
+      { _id: "Received"   , image: "/slider_online_5.webp"  , isActive:false}, 
+      { _id: "Transfer"   , image: "/slider_online_6.jpg"  , isActive:false}, 
+      { _id: "Inventory"  , image: "/slider_online_7.jpg"  , isActive:false},
    ] ;
 
    useEffect(() => {

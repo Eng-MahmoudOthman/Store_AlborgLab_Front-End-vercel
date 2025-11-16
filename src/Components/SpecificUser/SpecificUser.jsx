@@ -1,5 +1,4 @@
 import { Fragment, useContext, useEffect , useState } from "react";
-import avatar from "../../Assets/images/profile1.png"
 
 import style from "./specificUser.module.css" ;
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -20,7 +19,7 @@ export default function SpecificUser() {
 
    const showImageProfile = ()=>{
       Swal.fire({
-         imageUrl: showLogo? avatar : user.image?.secure_url ,
+         imageUrl: showLogo? "/profile1.png" : user.image?.secure_url ,
          imageHeight: 460,
          imageAlt: "A tall image"
       });
@@ -59,11 +58,11 @@ export default function SpecificUser() {
                         <div className={`${style.imgCover} m-auto text-center overflow-hidden`}>
                            <img 
                               onClick={()=>{showImageProfile()}} 
-                              src={user.image?.secure_url || avatar} 
+                              src={user.image?.secure_url || "/profile1.png"} 
                               onError={(e) => {
                                  setShowLogo(true)
                                  e.target.onerror = null ; // علشان ميعملش loop
-                                 e.target.src = avatar ;     // الصورة الديفولت
+                                 e.target.src = "/profile1.png" ;     // الصورة الديفولت
                               }}
                               className='w-100 rounded-2'
                               alt="Cover"

@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react' ;
 import { UserContext } from '../../Context/UserContext.js' ;
-import avatar from "../../Assets/images/profile1.png" ;
 import Swal from 'sweetalert2' ;
 import { Fragment } from 'react' ;
 import { Link } from 'react-router-dom' ;
@@ -16,7 +15,7 @@ export default function UserProfile() {
 
    let showImageProfile = ()=>{
       Swal.fire({
-         imageUrl: showLogo? avatar : loggedUser?.image ,
+         imageUrl: showLogo? "/profile1.png" : loggedUser?.image ,
          imageHeight: 460,
          imageAlt: "A tall image"
       });
@@ -38,11 +37,11 @@ export default function UserProfile() {
                   <div className={`${style.imgCoverProfile} m-auto text-center overflow-hidden`}>
                      <img 
                         onClick={()=>{showImageProfile()}} 
-                        src={loggedUser?.image || avatar} 
+                        src={loggedUser?.image || "/profile1.png"} 
                         onError={(e) => {
                            setShowLogo(true)
                            e.target.onerror = null ; // علشان ميعملش loop
-                           e.target.src = avatar ;     // الصورة الديفولت
+                           e.target.src = "/profile1.png" ;     // الصورة الديفولت
                         }}
                         className='w-100 rounded-2'
                         alt="Cover"
