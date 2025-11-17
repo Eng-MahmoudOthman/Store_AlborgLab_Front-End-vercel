@@ -160,7 +160,7 @@ export default function UserContextProvider(props){
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/users/signature` ,{signature} ,  {headers:header} )
       .then(({data})=>{
          if(data.message === "success"){
-            notification("success" , "ِAdded Signature Successfully")
+            notification("success" , "Added Signature Successfully")
             setLoading(false);
          }
       })
