@@ -96,13 +96,13 @@ export default function DevelopedInformation() {
                      <div className="row align-item-center">
                         <div className="col-md-6 text-center mt-4">
                            <div className='w-100 text-center mb-4'>
-                              {/* <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" /> */}
+                              <img src="/qrcode.png" className='w-50 barcode-box rounded-2 p-4' alt="qrCode" />
                            </div>
                            <Link to={process.env.REACT_APP_FRONT_URL} target='_blank' className='text-primary'>Website Link Click Here !</Link>
                         </div>
 
                         <div className="text-center">
-                           {/* <p>{textToCopy}</p> */}
+                           <p>{textToCopy}</p>
                            <button onClick={handleCopy} className="btn btn-success">
                               {copied ? "✔️ تم النسخ" : "📋 نسخ الرابط "}
                            </button>
@@ -173,15 +173,15 @@ export default function DevelopedInformation() {
 
 
                      <div className="row align-item-center">
-                        <div className="col-md-6 text-center mt-4">
+                        <div className="col-md-10 text-center mt-4 offset-md-1 ">
                            <div className='w-100 text-center mb-4'>
-                              {/* <img src={qrCode} className='w-50 barcode-box rounded-2 p-4' alt="qrCode" /> */}
+                              <img src="/qrcode.png" className='w-50 barcode-box rounded-2 p-4' alt="qrCode" />
                            </div>
                            <Link to={process.env.REACT_APP_FRONT_URL} target='_blank' className='text-primary'>Website Link Click Here !</Link>
                         </div>
 
                         <div className="text-center">
-                           {/* <p>{textToCopy}</p> */}
+                           <p>{textToCopy}</p>
                            <button onClick={handleCopy} className="btn btn-success">
                               {copied ? "✔️ تم النسخ" : "📋 نسخ الرابط "}
                            </button>
@@ -196,7 +196,11 @@ export default function DevelopedInformation() {
                         }
                      </div>
 
-
+                     <div className='text-center my-4'>
+                        <Link to="/QrCode.pdf" download  className="btn bg-main w-50">
+                           Download Qr Code 
+                        </Link>
+                     </div>
                   </div>
             }
 

@@ -56,8 +56,6 @@ export default function UserContextProvider(props){
          setLoading(false) ;
       })
    }
-
-
    async function getSpecificUser (id){
       setLoading(true);
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/users/${id}`  ,  {headers:header} )
@@ -72,8 +70,6 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-
-
    async function confirmedUser (id , confirmed){
       setConfirmedLoading(true);
       await axios.patch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/${id}`  , {confirmed:confirmed?"true":"false"} ,  {headers:header} )
@@ -94,8 +90,6 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-
-
    async function blockedUser (id , blocked){
       setBlockedLoading(true);
       await axios.patch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/${id}`  , {blocked:blocked?"true":"false"} ,  {headers:header} )
@@ -115,7 +109,6 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-
    async function updateBranchUser (id , branch){
       setBlockedLoading(true);
       await axios.patch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/updateBranchUser/${id}`  , {branch} ,  {headers:header} )
@@ -131,8 +124,6 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-
-
    async function deleteUser (id){
       setDeleteLoading(true);
       await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/users/${id}` , {headers:header} )
@@ -148,8 +139,6 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-
-
    async function getUserTeam (branchId){    
       setLoading(true);
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/users?branch=${branchId}`)
@@ -164,8 +153,23 @@ export default function UserContextProvider(props){
          console.log(error.response.data.message);
       })
    };
-
-
+   async function AddSignature (signature){ 
+      console.log(signature);
+         
+      setLoading(true);
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/users/signature` ,{signature} ,  {headers:header} )
+      .then(({data})=>{
+         if(data.message === "success"){
+            notification("success" , "ِAdded Signature Successfully")
+            setLoading(false);
+         }
+      })
+      .catch((error)=>{
+         setLoading(false);
+         notification("error" , "حصل خطأ أثناء حفظ التوقيع")
+         console.log(error.response.data.message);
+      })
+   };
    async function getLoggedUserMessages (id , limit , currentPage){      
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/message/getLoggedUserMessages/${id}?limit=${limit}&sort=-createdAt&page=${currentPage}` ,  {headers:header} )
       .then(({data})=>{
@@ -179,9 +183,6 @@ export default function UserContextProvider(props){
          console.log(error.response.data.message);
       })
    }
-
-
-
    // //! Get Logged Message :
    // const getLoggedUserMessages = async(id , limit , currentPage)=>{
 	// 	try { 
@@ -197,9 +198,6 @@ export default function UserContextProvider(props){
    //       setError(error.response?.data.message) ;
 	// 	}
 	// }
-
-
-
    const socketConnect = async () => {
       if (!socket && loggedUser) { // لتجنب اتصالات مزدوجة
          const newSocket = io(process.env.REACT_APP_BASE_URL);
@@ -215,9 +213,6 @@ export default function UserContextProvider(props){
          });
       }
    } ;
-
-
-
    const socketDisConnect = () => {
       if (socket) {
          socket.disconnect();
@@ -245,8 +240,6 @@ export default function UserContextProvider(props){
          })
       }
    }, [socket]);
-
-
    // Get Main Color From CSS Style File, and Set Into UseState :
    useEffect(() => {
       const rootStyles = getComputedStyle(document.documentElement);
@@ -268,6 +261,7 @@ export default function UserContextProvider(props){
                blockedUser ,
                deleteUser ,
                updateBranchUser ,
+               AddSignature ,
 
                team ,
                setTeam ,

@@ -75,10 +75,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getAllQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getAllQuantity("download" , "")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getAllQuantity("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getAllQuantity("seen" , "")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الاصناف</button>

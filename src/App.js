@@ -42,6 +42,7 @@ import Branches from './Components/Dashboard/Branches/Branches/Branches.jsx';
 import Items from './Components/Dashboard/Items/Items/Items.jsx';
 import Documents from './Components/Dashboard/Documents/Documents/Documents.jsx';
 import ShowDocuments from './Components/ShowDocuments/ShowDocuments.jsx';
+import SignaturePad from './Components/SignaturePad/SignaturePad.jsx';
 import ContactUs from './Components/ContactUs/ContactUs.jsx';
 
 
@@ -80,6 +81,7 @@ let routers = createHashRouter([
 		{path:"UsersSummary" , element:<ProtectedRoute><UsersSummary/></ProtectedRoute>} , 
 		{path:"Receive" , element:<ProtectedRoute><Receive/></ProtectedRoute>} , 
 		{path:"showDocuments" , element:<ProtectedRoute><ShowDocuments/></ProtectedRoute>} , 
+		{path:"SignaturePad" , element:<ProtectedRoute><SignaturePad/></ProtectedRoute>} , 
 		{path:"ClientChat/:receiver" , element:<ProtectedRoute><ClientChatting/></ProtectedRoute>} , 
 		{path:"*" , element:<NotFound />} , 
 	]} ,

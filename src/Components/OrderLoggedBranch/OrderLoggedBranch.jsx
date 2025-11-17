@@ -88,10 +88,10 @@ export default function OrderLoggedBranch() {
                   :
                   <>
                      <div className="col-2">
-                        <button onClick={()=>{getOrdersPDF("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                        <button onClick={()=>{getOrdersPDF("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                      </div>
                      <div className="col-2">
-                        <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                        <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
                      </div>
                   </>
                }
@@ -101,7 +101,7 @@ export default function OrderLoggedBranch() {
                </div>
             </div>
 
-            <p><i class="fa-solid fa-mug-saucer mx-2"></i> Order Count  : {orders.length || 0}</p>
+            <p><i className="fa-solid fa-mug-saucer mx-2"></i> Order Count  : {orders.length || 0}</p>
 
             {loading? 
                   <Loading type="large" color="gray"/> 
@@ -132,18 +132,18 @@ export default function OrderLoggedBranch() {
                                           :
                                           <>
                                              {/* <div className="col-4">
-                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} className='btn btn-danger btn-sm w-100 p-0' >Download<i class="fa-solid fa-download mx-1"></i></button>
+                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} className='btn btn-danger btn-sm w-100 p-0' >Download<i className="fa-solid fa-download mx-1"></i></button>
                                              </div>
                                              <div className="col-4">
-                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}} className='btn btn-success btn-sm w-100 p-0'>Print<i class="fa-solid fa-eye mx-1"></i></button>
+                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}} className='btn btn-success btn-sm w-100 p-0'>Print<i className="fa-solid fa-eye mx-1"></i></button>
                                              </div>
                                              <div className="col-4">
-                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} className='btn btn-info btn-sm w-100 p-0'>Barcode<i class="fa-solid fa-barcode mx-1"></i></button>
+                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} className='btn btn-info btn-sm w-100 p-0'>Barcode<i className="fa-solid fa-barcode mx-1"></i></button>
                                              </div> */}
-                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} type="button" className="btn btn-sm btn-outline-success">Download<i class="fa-solid fa-download mx-1"></i></button>
-                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}}  type="button" className="btn btn-sm btn-outline-success">Print<i class="fa-solid fa-eye mx-1"></i></button>
-                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} type="button" className="btn btn-sm btn-outline-success">Barcode<i class="fa-solid fa-barcode mx-1"></i></button>
+                                             <div className="btn-group" role="group" aria-label="Basic outlined example">
+                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} type="button" className="btn btn-sm btn-outline-success">Download<i className="fa-solid fa-download mx-1"></i></button>
+                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}}  type="button" className="btn btn-sm btn-outline-success">Print<i className="fa-solid fa-eye mx-1"></i></button>
+                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} type="button" className="btn btn-sm btn-outline-success">Barcode<i className="fa-solid fa-barcode mx-1"></i></button>
                                              </div>
                                           </>
                                        }

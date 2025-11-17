@@ -23,6 +23,7 @@ export default function Setting() {
       {name:"Contact Me" , url:"/DevelopedInformation" , icon:<i className="fa-solid fa-phone"></i>} ,
       {name:"Language " ,  click:""  , icon:<i className="fa-solid fa-earth-americas"></i>} ,
       {name:"Change Style" , url:"" , icon:<i className="fa-solid fa-wallet"></i>} ,
+      {name:"Add Signature" , url:"/SignaturePad" , icon:<i className="fa-solid fa-signature"></i>} ,
       {name:"Log Out" , click:handleLogOut , icon:<i className="fa-solid fa-right-from-bracket"></i>} ,
    ]
 
