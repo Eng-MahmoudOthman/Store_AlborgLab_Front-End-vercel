@@ -112,6 +112,10 @@ export default function ReportContextProvider(props){
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
                newTab = window.open();
+               if(!newTab){
+                  notification("error", "المتصفح منع فتح الصفحة. افتح البوب أبس (Popups) من الإعدادات");
+                  return;
+               }
                fileURL = URL.createObjectURL(response.data);
                newTab.location.href = fileURL;
             }
