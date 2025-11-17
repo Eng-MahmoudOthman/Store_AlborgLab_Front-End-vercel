@@ -13,7 +13,7 @@ export default function SignaturePad({ userId }) {
 
    const handleSave = async () => {
       if(sigRef.current === null) return
-      const signatureBase64 = sigRef.current.getCanvas().toDataURL("image/png");
+      const signatureBase64 = sigRef.current.getCanvas().toDataURL("image/webp", 0.5);
       AddSignature(signatureBase64);
       setSignature(signatureBase64);
    };
