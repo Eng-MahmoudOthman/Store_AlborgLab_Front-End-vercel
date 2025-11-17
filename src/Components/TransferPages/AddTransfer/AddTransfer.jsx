@@ -30,7 +30,7 @@ export default function AddTransfer({branches , loadingBranch}) {
       }) ;
 
       useEffect(() => {
-         getBranchQuantities("" , "false")
+         getBranchQuantities("" ,"", "false")
       }, []) ;
    
    return (
