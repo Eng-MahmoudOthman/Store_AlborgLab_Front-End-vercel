@@ -41,8 +41,8 @@ export default function SignaturePad({ userId }) {
                      penColor="black"
                      // penColor={mainColor || "black"}
                      canvasProps={{
-                        width: 350,
-                        height: 150,
+                        width: 200,
+                        height: 100,
                         className: "border border-dark rounded shadow"
                      }}
                   />
