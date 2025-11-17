@@ -28,9 +28,6 @@ export default function Inventory() {
          setShow(data)
       }
    }
-
-
-
    function handleSearch(search){
       if(search.length > 3){
          getBranchQuantities(search.toLowerCase()  , category , "false") ;
@@ -38,7 +35,6 @@ export default function Inventory() {
          getBranchQuantities(""  , category , "false") ;
       }
    } ;
-
    function handleCategory(e){
       const category = e.target.value.split("-")[0] ;
       setCategory(category) ;
@@ -48,8 +44,6 @@ export default function Inventory() {
 
       getBranchQuantities(""  , category , "false") ;
    } ;
-
-
    function handleDeleteQuantity(id){
       Swal.fire({
          title:"Delete this Quantity? Are you sure?" ,
@@ -80,6 +74,7 @@ export default function Inventory() {
    useEffect(() => {
       getCategories(true);
    }, [])
+
    return (
       <Fragment>
          <nav aria-label="breadcrumb" className='container bg-body-secondary'>
