@@ -5,6 +5,30 @@ import { UserContext } from "../../Context/UserContext.js";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading.jsx";
 
+
+function resizeBase64Image(base64Str, maxWidth = 150, maxHeight = 75) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = base64Str;
+
+    img.onload = () => {
+      let canvas = document.createElement("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+
+      canvas.width = img.width * ratio;
+      canvas.height = img.height * ratio;
+
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // ↓ هنا بنعملها WebP عشان أصغر حجم
+      resolve(canvas.toDataURL("image/webp", 0.7));
+    };
+  });
+}
+
+
 export default function SignaturePad({ userId }) {
    const sigRef = useRef(null);
    const [signature, setSignature] = useState(null);
@@ -13,7 +37,9 @@ export default function SignaturePad({ userId }) {
 
    const handleSave = async () => {
       if(sigRef.current === null) return
-      const signatureBase64 = sigRef.current.getCanvas().toDataURL("image/webp", 0.5);
+      const base64 = sigRef.current.getCanvas().toDataURL("image/webp", 0.5);
+      const signatureBase64 = await resizeBase64Image(base64, 150, 75);
+
       AddSignature(signatureBase64);
       setSignature(signatureBase64);
    };
@@ -41,8 +67,8 @@ export default function SignaturePad({ userId }) {
                      penColor="black"
                      // penColor={mainColor || "black"}
                      canvasProps={{
-                        width: 200,
-                        height: 100,
+                        width: 350,
+                        height: 150,
                         className: "border border-dark rounded shadow"
                      }}
                   />
