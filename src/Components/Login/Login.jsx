@@ -62,7 +62,7 @@ export default function Login(){
 
             setTimeout(() => {
                handleLogOut()
-            } , (60*60*2*1000)) ;    
+            } , (60*60*10*1000)) ;    
 
             // After 1 hours   logout
                                  // 60*10*1000 = 600,000= 10 minute
