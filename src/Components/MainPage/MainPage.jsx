@@ -24,9 +24,9 @@ export default function MainPage() {
       { name: "Received"      , icon: ""     , url:"/Receive"        , count:loginData.receive  , isActive:true}  , 
       { name: "Transfer"      , icon: ""     , url:"/Transfer"       , count:loginData.transfer  , isActive:true} , 
       { name: "Members"       , icon: ""     , url:"/yourTeam"       , count:0  , isActive:true}  , 
-      { name: "Exam"          , icon: ""     , url :"#"              , count:0  , isActive:true}  , 
+      { name: "Exam"          , icon: <i className="fa-regular fa-hourglass-half text-danger mx-2"></i>     , url :"#"              , count:0  , isActive:true}  , 
       { name: "Templates"     , icon: ""     , url:"/showDocuments"  , count:0  , isActive:true} ,
-      { name: "Chatting"      , icon: ""     , url:"/ListUserChat"   , count:0  , isActive:false} ,
+      { name: "Chatting"      , icon: <i className="fa-regular fa-hourglass-half text-danger mx-2"></i>     , url:"/ListUserChat"   , count:0  , isActive:false} ,
       { name: "Reports"       , icon: ""     , url:"/Report"         , count:0  , isActive:true}  ,
       ...(role === "admin"?[{ name: "Dashboard"     , icon: ""     , url:"/Dashboard"      , count:0  , isActive:true}]:[] ) ,
       // { name: "UsersList"     , icon: ""     , url:"/UsersList"      , count:0  , isActive:true}  ,
@@ -88,9 +88,9 @@ export default function MainPage() {
                {services.map((service, index) => (
                   <div key={index} className={`col-6 my-1 `}>
                      <Link to={service.isActive?service.url:"#"}>
-                        <div className="position-relative">
+                        <div className="position-relative ">
                            <div className={`card text-center p-2 ${style.card}`}>
-                              <p className={`m-0 fw-bold ${style.cardText}`}>{service.name}</p>
+                              <p className={`m-0 fw-bold  ${style.cardText}`}>  {service.name} <span className='position-absolute end-0'>{service.icon}</span> </p>
                            </div>
                            {service.count? 
                                  <span className={`${style.notificationCount} d-flex justify-content-center align-item-center position-absolute z-1 translate-middle badge rounded-pill bg-danger`}>

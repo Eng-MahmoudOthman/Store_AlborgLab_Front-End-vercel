@@ -323,10 +323,10 @@ export default function ReceiveOrder() {
                                  {loadingSearch && <div className="text-center small text-secondary mt-1">Searching...</div>}
 
                                  {filteredItems.length > 0 && (
-                                    <ul className="list-group position-absolute w-75 shadow-sm mt-1" style={{ zIndex: 10, maxHeight: "200px", overflow: "auto" }}>
+                                    <ul className="list-group position-absolute w-100 shadow-sm mt-1" style={{ zIndex: 10, maxHeight: "200px", overflow: "auto" }}>
                                        {filteredItems.map((ele) => (
                                           <li key={ele._id} className="list-group-item list-group-item-action" style={{ cursor: "pointer" }} onClick={() => handleSelectItem(ele)}>
-                                          {ele.item_s_code} - {ele.name}
+                                             {ele.item_s_code} - {ele.name}
                                           </li>
                                        ))}
                                     </ul>
