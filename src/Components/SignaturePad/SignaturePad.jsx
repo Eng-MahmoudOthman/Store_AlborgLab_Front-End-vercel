@@ -31,6 +31,7 @@ export default function SignaturePad({ userId }) {
             <nav aria-label="breadcrumb" className='container bg-body-secondary'>
                <ol className="breadcrumb ">
                   <li className="breadcrumb-item p-0"><Link className="text-primary" to="/">Home</Link></li>
+                  <li className="breadcrumb-item"><Link className="text-primary mx-1" to="/Setting">Setting</Link></li>
                   <li className="breadcrumb-item active" aria-current="page">Add Signature</li>
                </ol>
             </nav>

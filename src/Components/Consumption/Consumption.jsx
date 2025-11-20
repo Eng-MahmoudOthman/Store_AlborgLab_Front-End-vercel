@@ -21,12 +21,11 @@ export default function Consumption() {
    
    function handleShow (data){
       if(data === "get"){
-         getConsumption("false") ;
+         getConsumption() ;
       }
       setShow(data)
    }
    function handleCheckedConsumption(id){
-      console.log(id);
       checkConsumption(id) ;
       
    }

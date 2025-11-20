@@ -33,29 +33,25 @@ export default function QuantityContextProvider(props){
 
 
 
-   async function getBranchQuantities(search , category , flag){
+   async function getBranchQuantities(search ,  flag){
       setLoading(true);
-      let URL = `${process.env.REACT_APP_BASE_URL}/api/v1/quantity/quantitiesBranch?search=${search}&expired=${flag}`
-      if(category){
-         URL = `${process.env.REACT_APP_BASE_URL}/api/v1/quantity/quantitiesBranch?search=${search}&expired=false&category=${category}`
-      } ;
-      
-      await axios.get( URL ,  {headers:header} )
+      await axios.get( `${process.env.REACT_APP_BASE_URL}/api/v1/quantity/quantitiesBranch?search=${search}&expired=${flag}` ,  {headers:header} )
       .then(({data})=>{
          if(data.message === "success"){
-            setQuantities(data.quantities) ;
+            setQuantities(data?.quantities) ;
             setLoading(false);
          }
       })
       .catch((error)=>{
-         console.log(error.response.data.message);
+         console.log(error.response?.data.message);
+         console.log(error);
          setQuantities([]) ;
          setLoading(false);
       })
    } ;
-   async function getConsumption(consumed){
+   async function getConsumption(){
       setLoading(true);
-      await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/consumption/branchConsumption?consumed=${consumed}`  ,  {headers:header} )
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/consumption/branchConsumption`  ,  {headers:header} )
       .then(({data})=>{
          if(data.message === "success"){
             setConsumption(data.consumption) ;
@@ -79,10 +75,13 @@ export default function QuantityContextProvider(props){
       })
       .catch((error)=>{
          console.log(error.response.data.message);
+         notification("error", error.response.data.message)
          setLoading(false);
       })
    } ;
    async function addConsumption(values){
+      console.log(values);
+      
       setLoading(true);
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/consumption` , {...values}  ,  {headers:header} )
       .then(({data})=>{
@@ -93,6 +92,7 @@ export default function QuantityContextProvider(props){
       })
       .catch((error)=>{
          console.log(error.response.data.message);
+         notification("error" , error.response.data.message)
          setLoading(false);
       })
    } ;
@@ -290,8 +290,6 @@ export default function QuantityContextProvider(props){
          setDeleteLoading(false);
       })
    } ;
-
-   
    async function deleteQuantity (id){
       await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/quantity/${id}`  ,  {headers:header} )
       .then(({data})=>{

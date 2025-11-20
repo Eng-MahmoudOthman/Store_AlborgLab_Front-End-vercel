@@ -78,6 +78,7 @@ export default function ReceiveOrder() {
          setLoading(true);
          setError(null);
          try {
+            values.delivery_number = values.delivery_number.toString();
             const payload = { ...values, listItem };
             const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/order/createOrderBranch`, payload, { headers: header });
             if (data?.message === "success") {
@@ -98,7 +99,7 @@ export default function ReceiveOrder() {
 
       const orderValidation = Yup.object().shape({
          title: Yup.string().min(2, "Title Should be More than 2").max(30, "Title less than 100").required("Title is Required").trim(),
-         delivery_number: Yup.string(),
+         delivery_number: Yup.number(),
       });
 
       const formikOrder = useFormik({
@@ -233,6 +234,7 @@ export default function ReceiveOrder() {
                      <div className="w-100 m-auto mb-2">
                         <label htmlFor="title">Order Title :</label>
                         <input
+                           type="text"
                            id="title"
                            name="title"
                            maxLength={30}
@@ -249,6 +251,7 @@ export default function ReceiveOrder() {
                      <div className="w-100 m-auto mb-2">
                         <label htmlFor="delivery_number">Delivery Number :</label>
                         <input
+                           type="number"
                            id="delivery_number"
                            name="delivery_number"
                            required

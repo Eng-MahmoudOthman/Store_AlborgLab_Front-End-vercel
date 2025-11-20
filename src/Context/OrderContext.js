@@ -26,7 +26,7 @@ export default function OrderContextProvider(props){
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/order?branch=${loggedUser.branchId}&keyword=${search}`  , {headers:header} )
       .then(({data})=>{
          if(data?.message === "success"){
-            setOrders(data.orders) ;
+            setOrders(data.orders.reverse()) ;
             setLoading(false) ;
          }
       })

@@ -3,6 +3,7 @@ import TimeAgo from '../TimeAgo/TimeAgo.jsx';
 import { QuantityContext } from '../../Context/QuantityContext.js';
 import Loading from '../Loading/Loading.jsx';
 import style from "./itemConsumption.module.css" ;
+import notification from '../../Utilities/notification.js';
 
 export default function ItemConsumption({ele}) {
    const[countItem  , setCountItem] = useState(0) ;
@@ -13,7 +14,9 @@ export default function ItemConsumption({ele}) {
 
 
 
-   function handleAddConsumption(id){
+   function handleAddConsumption(id , currentQuantity){
+      if(currentQuantity < +countItem) return notification("error" , ` . الكمية المطلوبة غير متوفرة`)
+      // if(currentQuantity < +countItem) return notification("error" , `Stock available: [${currentQuantity}] — الكمية المطلوبة غير متوفرة في المخزن.`)
       setIsLoading(true) ;
       let values = {
          quantityId :id, 
@@ -62,7 +65,7 @@ export default function ItemConsumption({ele}) {
                               {isLoading ? 
                                     <button className="btn btn-sm btn-success w-75 p-0 my-1"> <Loading color="white"  width={20} height={20} strokeWidth="6"/></button>
                                  : 
-                                    <button className={`btn btn-sm w-75 p-1 my-1 ${ele.expired_date < Date.now()?"btn-danger":"btn-success"}`} onClick={()=>{handleAddConsumption(ele._id)}}>Consumped 🕗</button>
+                                    <button className={`btn btn-sm w-75 p-1 my-1 ${ele.expired_date < Date.now()?"btn-danger":"btn-success"}`} onClick={()=>{handleAddConsumption(ele._id , ele.item_quantity)}}>Consumped {ele.expired_date < Date.now()?<i className="fa-solid fa-hourglass-end"></i>:"🕗"} </button>
                               }
                            </td>
                         </tr>

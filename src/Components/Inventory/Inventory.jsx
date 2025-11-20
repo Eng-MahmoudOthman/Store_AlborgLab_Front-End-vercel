@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react' ;
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react' ;
 import style from "./inventory.module.css" ;
 import { Link } from 'react-router-dom';
 import { QuantityContext } from '../../Context/QuantityContext.js';
@@ -11,38 +11,38 @@ import Swal from 'sweetalert2';
 
 
 export default function Inventory() {
-   const{ getBranchQuantities , getCategories , categories, quantities , deleteQuantity , loading } = useContext(QuantityContext) ;
+   const{ getBranchQuantities , getCategories , categories, quantities , setQuantities , deleteQuantity , loading } = useContext(QuantityContext) ;
    const {getAllQuantity , getExpiredQuantityCurrentMonth , loginData , loading:loadingFile} = useContext(ReportContext) ;
    const{loggedUser} = useContext(UserContext) ;
    
    const[show , setShow] = useState("all") ;
-   const[category , setCategory] = useState("") ;
+   const [filter, setFilter] = useState("");
    const[categoryName , setCategoryName] = useState("All Quantities") ;
+
 
    function handleShow (data){
       if(data === "all"){
-         getBranchQuantities(""  , category , "false") ;
+         getBranchQuantities(""   , "false") ;
          setShow(data)
       }else if(data === "expired"){
-         getBranchQuantities(""  , category , "true") ;
+         getBranchQuantities(""  , "true") ;
          setShow(data)
       }
    }
    function handleSearch(search){
       if(search.length > 3){
-         getBranchQuantities(search.toLowerCase()  , category , "false") ;
+         getBranchQuantities(search.toLowerCase()  , "false") ;
       }else if(search.length === 0){
-         getBranchQuantities(""  , category , "false") ;
+         getBranchQuantities(""  , "false") ;
       }
    } ;
    function handleCategory(e){
-      const category = e.target.value.split("-")[0] ;
-      setCategory(category) ;
+      const category = e.target.value && (e.target.value.split("-")[0]) ;
+      setFilter(category) ;
       
-      const categoryName = e.target.value.split("-")[1] ;
-      setCategoryName(categoryName.charAt(0).toUpperCase() + categoryName.split("").slice(1).join("")) ;
+      const categoryName = e.target.value &&  (e.target.value.split("-")[1]) ;
+      setCategoryName(categoryName && (categoryName.charAt(0).toUpperCase() + categoryName.split("").slice(1).join(""))) ;
 
-      getBranchQuantities(""  , category , "false") ;
    } ;
    function handleDeleteQuantity(id){
       Swal.fire({
@@ -68,12 +68,30 @@ export default function Inventory() {
 
 
    useEffect(() => {
-      getBranchQuantities(""  , category , "false") ;
+      getBranchQuantities(""  , "false") ;
    }, [loggedUser])
 
    useEffect(() => {
       getCategories(true);
    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+   const filteredProducts = useMemo(() => {
+      if (filter === "") return quantities;
+      return quantities.filter(item => item.category === filter);
+   }, [quantities, filter]);
+
+   
 
    return (
       <Fragment>
@@ -83,7 +101,6 @@ export default function Inventory() {
                <li className="breadcrumb-item active p-0" aria-current="page">Inventory</li>
             </ol>
          </nav>
-
 
                   <div className='d-flex justify-content-evenly my-5'>
                      <button className='btn bg-main ' onClick={()=>{handleShow("all")}}>All Items</button>
@@ -122,10 +139,10 @@ export default function Inventory() {
                                     :
                                     <>
                                        <div className="col-2">
-                                          <button onClick={()=>{getAllQuantity("download" , category)}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
+                                          <button onClick={()=>{getAllQuantity("download" , filter)}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                                        </div>
                                        <div className="col-2">
-                                          <button onClick={()=>{getAllQuantity("seen" , category)}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                                          <button onClick={()=>{getAllQuantity("seen" , filter)}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
                                        </div>
                                     </>
                                  }
@@ -141,7 +158,7 @@ export default function Inventory() {
                                  <Loading type="large" color="gray"/> 
                               :
                               <>
-                                 <h6>All Items Within  Branch <span className='text-primary'>{quantities[0]?.branch.name}</span></h6>
+                                 <h6>All Items Within  Branch <span className='text-primary'>{loggedUser?.branch}</span></h6>
                                  <p>Quantity : <span className='text-primary'>{categoryName? categoryName : "All Quantities"}</span> </p>
                                  <div>
                                     <select onChange={(e)=>{handleCategory(e)}} className='form-select'>
@@ -151,10 +168,10 @@ export default function Inventory() {
                                     </select>
                                  </div>
 
-                                 <p><i className="fa-solid fa-mug-saucer mx-2"></i> Item Count  : {quantities.length || 0}</p>
+                                 <p><i className="fa-solid fa-mug-saucer mx-2"></i> Item Count  : {filteredProducts.length || 0}</p>
                                  {
-                                    quantities.length?
-                                       quantities.map((ele)=>
+                                    filteredProducts.length?
+                                       filteredProducts.map((ele)=>
                                           <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 py-1 p-0 position-relative`}>
                                              <div className={`${style.title} row align-item-center mx-2`}>
                                                 <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy mx-2"></i>{ele.name}</p>
@@ -242,46 +259,47 @@ export default function Inventory() {
                               :
                               <>
                                  <h6>Before Expired Items Through Current Month</h6>
-                                 <p><i className="fa-solid fa-mug-saucer mx-2"></i> Item Count  : {quantities.length || 0}</p>
-                                 {quantities.length? "" : <h4>Items Empty..!</h4>}
+                                 <p><i className="fa-solid fa-mug-saucer mx-2"></i> Item Count  : {quantities?.length || 0}</p>
 
                                  {
-                                    quantities.map((ele)=>
-                                       <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-0`}>
-                                          <div className={`${style.title} row align-item-center mx-2`}>
-                                             <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy mx-2"></i>{ele.name}</p>
-                                             {/* <i className="fa-solid fa-bong"></i> */}
-                                             {/* <i className="fa-solid fa-trophy"></i> */}
-                                             <p className='col-2 p-0 m-0'>
-                                                <TimeAgo createdAt={ele.createdAt} showTimeOnly={true}/>
-                                             </p>
-                                          </div>
+                                    quantities.length?
+                                       quantities.map((ele)=>
+                                          <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-0`}>
+                                             <div className={`${style.title} row align-item-center mx-2`}>
+                                                <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy mx-2"></i>{ele.name}</p>
+                                                {/* <i className="fa-solid fa-bong"></i> */}
+                                                {/* <i className="fa-solid fa-trophy"></i> */}
+                                                <p className='col-2 p-0 m-0'>
+                                                   <TimeAgo createdAt={ele.createdAt} showTimeOnly={true}/>
+                                                </p>
+                                             </div>
 
-                                          <div>
-                                             <table className="table order-table table-sm text-center">
-                                                <thead>
-                                                   <tr>
-                                                      <th>Code</th>
-                                                      <th>Quantity</th>
-                                                      <th>Delivery</th>
-                                                      <th>Expired</th>
-                                                   </tr>
-                                                </thead>
-                                                <tbody>
-                                                      <tr key={ele.name}>
-                                                         <td className='text-primary fw-bold'>{ele.item.item_s_code}</td>
-                                                         <td>{ele.item_quantity}</td>
-                                                         <td>{ele.delivery_number}</td>
-                                                         <td className={ele.expired_date < Date.now()? "text-danger" : ""}>
-                                                            {new Date(ele.expired_date).toISOString().slice(0, 10)}
-                                                            {ele.expired_date < Date.now()? <span className='fw-bold mx-4'>Expired</span> : ""}
-                                                         </td>                                                      
+                                             <div>
+                                                <table className="table order-table table-sm text-center">
+                                                   <thead>
+                                                      <tr>
+                                                         <th>Code</th>
+                                                         <th>Quantity</th>
+                                                         <th>Delivery</th>
+                                                         <th>Expired</th>
                                                       </tr>
-                                                </tbody>
-                                             </table>
+                                                   </thead>
+                                                   <tbody>
+                                                         <tr key={ele.name}>
+                                                            <td className='text-primary fw-bold'>{ele.item.item_s_code}</td>
+                                                            <td>{ele.item_quantity}</td>
+                                                            <td>{ele.delivery_number}</td>
+                                                            <td className={ele.expired_date < Date.now()? "text-danger" : ""}>
+                                                               {new Date(ele.expired_date).toISOString().slice(0, 10)}
+                                                               {ele.expired_date < Date.now()? <span className='fw-bold mx-4'>Expired</span> : ""}
+                                                            </td>                                                      
+                                                         </tr>
+                                                   </tbody>
+                                                </table>
+                                             </div>
                                           </div>
-                                       </div>
-                                    )
+                                       )
+                                    : <p className='text-danger fw-bold'>Quantity Pre Expired List Is Empty</p>
                                  }
                               </>
                            }
