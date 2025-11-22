@@ -16,13 +16,15 @@ export default function MainPage() {
    const {loggedUser , role , messageCount , mainColor} = useContext(UserContext) ;
    const {loginData , loading , getInfoLogin} = useContext(ReportContext) ;
 
+
+
    const services = [
-      { name: "Consumption"   , icon: ""     , url:"/Consumption"    , count:loginData.consumption  , isActive:true}  , 
+      { name: "Consumption"   , icon: ""     , url:"/Consumption"    , count:loginData?.consumption  , isActive:true}  , 
       { name: "Orders"        , icon: ""     , url:"/Orders"         , count:0  , isActive:true}  , 
-      { name: "Inventory"     , icon: ""     , url:"/Inventory"      , count:loginData.expiredCurrentMonth  , isActive:true}  ,
-      { name: "Expired"       , icon: ""     , url:"/ExpireDate"     , count:loginData.expired  , isActive:true}  , 
-      { name: "Received"      , icon: ""     , url:"/Receive"        , count:loginData.receive  , isActive:true}  , 
-      { name: "Transfer"      , icon: ""     , url:"/Transfer"       , count:loginData.transfer  , isActive:true} , 
+      { name: "Inventory"     , icon: ""     , url:"/Inventory"      , count:loginData?.expiredCurrentMonth  , isActive:true}  ,
+      { name: "Expired"       , icon: ""     , url:"/ExpireDate"     , count:loginData?.expired  , isActive:true}  , 
+      { name: "Received"      , icon: ""     , url:"/Receive"        , count:loginData?.receive  , isActive:true}  , 
+      { name: "Transfer"      , icon: ""     , url:"/Transfer"       , count:loginData?.transfer  , isActive:true} , 
       { name: "Members"       , icon: ""     , url:"/yourTeam"       , count:0  , isActive:true}  , 
       { name: "Exam"          , icon: <i className="fa-regular fa-hourglass-half text-danger mx-2"></i>     , url :"#"              , count:0  , isActive:true}  , 
       { name: "Templates"     , icon: ""     , url:"/showDocuments"  , count:0  , isActive:true} ,
@@ -43,6 +45,8 @@ export default function MainPage() {
       { _id: "Inventory"  , image: "/slider_online_7.jpg"  , isActive:false},
    ] ;
 
+
+
    useEffect(() => {
 		getInfoLogin() ;
 	}, [loggedUser ]) ;
@@ -50,6 +54,8 @@ export default function MainPage() {
 
    return ( 
       <div className={` ${style.mainSection}`}>
+         {   console.log(loginData)
+}
          <div className={`container`}> 
             {/* Info Section with Slider */}
             <section className="home-slider p-3 rounded-2 mb-2">
@@ -77,8 +83,8 @@ export default function MainPage() {
                      
                   :
                   <>
-                     <p className={`${style.message} m-0 p-0`}> {loginData.messageLogin}</p>
-                     <p className={`${style.message} m-0 p-0 mb-3`}>Total Valid Items : <span className='main-color'>{loginData.notExpired}</span> </p>
+                     <p className={`${style.message} m-0 p-0`}> {loginData?.messageLogin}</p>
+                     <p className={`${style.message} m-0 p-0 mb-3`}> Total Valid Items : <span className='main-color'>{loginData?.notExpired}</span> 🧪</p>
                   </>
                }
             </section>

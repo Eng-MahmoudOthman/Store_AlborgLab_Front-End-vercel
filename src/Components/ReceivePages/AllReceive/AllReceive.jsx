@@ -4,14 +4,16 @@ import Loading from '../../Loading/Loading.jsx';
 import { QuantityContext } from '../../../Context/QuantityContext.js';
 import { ReportContext } from '../../../Context/ReportContext.js';
 import TimeAgo from '../../TimeAgo/TimeAgo.jsx';
+import LoadingPopup from '../../LoadingPopup/LoadingPopup.jsx';
 
 export default function AllReceive() {
    const {getReceive , receive , loadingTransfer} = useContext(QuantityContext) ;
-   const {getReceivePDF , loading:loadingFile} = useContext(ReportContext) ;
+   const {getReceivePDF  , showPopup , setShowPopup , loading:loadingFile} = useContext(ReportContext) ;
    
 
    useEffect(() => {
       getReceive("receive") ;
+      setShowPopup(false) ;
    }, []) ;
 
 
@@ -19,6 +21,7 @@ export default function AllReceive() {
       <Fragment>
          <div className='container'>
             <div className='row g-1 mb-2'>
+               <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
                {loadingFile? 
                      <div className="col-4">
                         <button className="btn bg-main btn-sm w-100"> <Loading color="white"  width={20} height={20} strokeWidth="6"/></button>

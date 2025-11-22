@@ -7,12 +7,13 @@ import { UserContext } from '../../Context/UserContext.js';
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
 import Swal from 'sweetalert2';
+import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
 
 
 
 export default function Inventory() {
    const{ getBranchQuantities , getCategories , categories, quantities , setQuantities , deleteQuantity , loading } = useContext(QuantityContext) ;
-   const {getAllQuantity , getExpiredQuantityCurrentMonth , loginData , loading:loadingFile} = useContext(ReportContext) ;
+   const {getAllQuantity  , showPopup , setShowPopup , getExpiredQuantityCurrentMonth , loginData , loading:loadingFile} = useContext(ReportContext) ;
    const{loggedUser} = useContext(UserContext) ;
    
    const[show , setShow] = useState("all") ;
@@ -69,6 +70,7 @@ export default function Inventory() {
 
    useEffect(() => {
       getBranchQuantities(""  , "false") ;
+      setShowPopup(false) ;
    }, [loggedUser])
 
    useEffect(() => {
@@ -101,6 +103,7 @@ export default function Inventory() {
                <li className="breadcrumb-item active p-0" aria-current="page">Inventory</li>
             </ol>
          </nav>
+         <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
 
                   <div className='d-flex justify-content-evenly my-5'>
                      <button className='btn bg-main ' onClick={()=>{handleShow("all")}}>All Items</button>

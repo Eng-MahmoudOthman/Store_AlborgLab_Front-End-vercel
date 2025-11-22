@@ -35,6 +35,7 @@ export default function ForgetPassword() {
          setLoading(true)
          await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/request-reset` , values)
          .then(({data})=>{
+            setError(null) ;
             notification("success" , data.message)
             setEmployeeCode(values.employeeCode)
             setStep("otp")
@@ -46,10 +47,10 @@ export default function ForgetPassword() {
             setLoading(false)
          })
       }
-      let validationSchemaEmail = Yup.object({
+      const validationSchemaEmail = Yup.object({
          employeeCode:Yup.string().required("الكود مطلوب").trim() ,
       })
-      let formikEmail = useFormik({
+      const formikEmail = useFormik({
          initialValues:{
             employeeCode:"" ,
          } , validationSchemaEmail , 
@@ -66,6 +67,7 @@ export default function ForgetPassword() {
          values.employeeCode = employeeCode
          await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/verify-otp` , values)
          .then(({data})=>{
+            setError(null) ;
             notification("success" , data.message)
             setResetToken(data.resetToken)
             setStep("reset")
@@ -77,10 +79,10 @@ export default function ForgetPassword() {
             setLoading(false)
          })
       } ;
-      let validationSchemaOTP = Yup.object({
+      const validationSchemaOTP = Yup.object({
          OTP:Yup.string().email().required().trim() ,
       })
-      let formikOTP = useFormik({
+      const formikOTP = useFormik({
          initialValues:{
             OTP:"" ,
          } , validationSchemaOTP , 
@@ -100,6 +102,7 @@ export default function ForgetPassword() {
          values.resetToken = resetToken
          await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/reset-password` , values)
          .then(({data})=>{
+            setError(null) ;
             notification("success" , data.message)
             navigate("/");
             setLoading(false) ;
@@ -110,10 +113,10 @@ export default function ForgetPassword() {
             setLoading(false)
          })
       } ;
-      let validationSchemaReset = Yup.object({
+      const validationSchemaReset = Yup.object({
          newPassword:Yup.string().email().required().trim() ,
       })
-      let formikReset  = useFormik({
+      const formikReset  = useFormik({
          initialValues:{
             newPassword:"" ,
          } , validationSchemaReset , 
@@ -208,7 +211,7 @@ export default function ForgetPassword() {
                                  value={formikOTP.values.OTP}
                                  onChange={formikOTP.handleChange} 
                                  onBlur={formikOTP.handleBlur}
-                                 className="form-control " id="OTP"  
+                                 className={`${style.form} form-control`} id="OTP"  
                                  name="OTP" 
                                  required
                                  placeholder="xx xx xx" />
@@ -252,7 +255,7 @@ export default function ForgetPassword() {
                                  value={formikReset.values.newPassword}
                                  onChange={formikReset.handleChange} 
                                  onBlur={formikReset.handleBlur}
-                                 className="form-control" id="newPassword"  
+                                 className={`${style.form} form-control`} id="newPassword"  
                                  name="newPassword" 
                                  required
                                  placeholder="Enter New Password" 

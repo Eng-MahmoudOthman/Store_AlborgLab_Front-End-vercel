@@ -1,7 +1,8 @@
-import { Fragment, useContext } from 'react' ;
+import { Fragment, useContext, useEffect } from 'react' ;
 import {Link} from 'react-router-dom' ;
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
+import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
 
 
 
@@ -17,10 +18,15 @@ export default function Report() {
       getOrdersPDF ,
       getReceivePDF ,
       getTransferPDF ,
+      showPopup , 
+      setShowPopup ,
       loading
    } = useContext(ReportContext) ;
 
 
+   useEffect(() => {
+      setShowPopup(false) ;
+   }, [])
    return (
       <Fragment>
          <nav aria-label="breadcrumb" className='container bg-body-secondary'>
@@ -31,6 +37,7 @@ export default function Report() {
          </nav>
          <div className='container'>
             <h1 className='main-header mb-2'>إنشاء التقارير</h1>
+            <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
 
             {loading? 
                   <div>

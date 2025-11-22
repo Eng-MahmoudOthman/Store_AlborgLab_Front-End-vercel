@@ -13,9 +13,14 @@ const API_URL = `${process.env.REACT_APP_BASE_URL}/api/v1/users`;
 
    
 
+export const getInfo = async () => {
+   const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/report/getInfoLogin`, {headers:header});
+   return data.data ;
+};
 export const getUsers = async () => {
    const { data } = await axios.get(API_URL);
-   return data.users ;
+
+   return data ;
 };
 
 export const addUser = async (newUser) => {

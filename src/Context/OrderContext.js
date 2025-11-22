@@ -32,7 +32,7 @@ export default function OrderContextProvider(props){
       })
       .catch((error)=>{
          setLoading(false) ;
-         notification("error", error.response.data.message + "---Done")
+         notification("error", error.response.data.message)
       })
    }
    async function deleteOrder (id){

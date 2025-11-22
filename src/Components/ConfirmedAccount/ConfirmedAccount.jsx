@@ -33,6 +33,7 @@ export default function ConfirmedAccount() {
          setLoadingOTP(true) ;
             await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/send-otp` , {id})
          .then((data)=>{
+            setError(null)
             setLoadingOTP(false) ;
             notification("success" , "Send OTP Successfully")
             // notification("success" , data.data.message)
@@ -55,6 +56,7 @@ export default function ConfirmedAccount() {
          .then(({data})=>{
             //^ Check Login Success User :
             if(data?.message === "Activated Account Successfully"){
+               setError(null) ;
                notification("success" , data.message);
 
                setLoading(false)

@@ -6,6 +6,7 @@ import { OrderContext } from '../../Context/OrderContext.js';
 import Swal from 'sweetalert2';
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
+import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
 
 
 
@@ -15,7 +16,7 @@ import Loading from '../Loading/Loading.jsx';
 export default function OrderLoggedBranch() {
       const[status , setStatus] = useState("")
       const {getLoggedOrders , orders , deleteOrder , loading} = useContext(OrderContext) ;
-      const {getOrdersPDF , getSpecificOrderPDF , getOrderBarcodePDF ,loading:loadingFile} = useContext(ReportContext) ;
+      const {getOrdersPDF , showPopup , setShowPopup , getSpecificOrderPDF , getOrderBarcodePDF ,loading:loadingFile} = useContext(ReportContext) ;
 
 
 
@@ -65,6 +66,7 @@ export default function OrderLoggedBranch() {
 
       useEffect(() => {
          getLoggedOrders("") ;
+         setShowPopup(false) ;
       }, [])
 
    return (
@@ -79,6 +81,7 @@ export default function OrderLoggedBranch() {
                   </div>
                </form>
             </div>
+            <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
 
             <div className='row g-1 mb-5'>
                {loadingFile? 

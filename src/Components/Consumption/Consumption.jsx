@@ -7,13 +7,14 @@ import ItemConsumption from '../ItemConsumption/ItemConsumption.jsx';
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
 import style from "./consumption.module.css"
+import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
 
 export default function Consumption() {
    const[show , setShow] = useState("add") ;
-   
+
    const{ getBranchQuantities , quantities , loading , getConsumption , consumption , checkConsumption} = useContext(QuantityContext) ;
    const{loggedUser} = useContext(UserContext) ;
-   const {getCurrentConsumption ,  getAllConsumption , loginData , loading:loadingFile} = useContext(ReportContext) ;
+   const {getCurrentConsumption , showPopup , setShowPopup ,  getAllConsumption , loginData , loading:loadingFile} = useContext(ReportContext) ;
 
    
 
@@ -39,6 +40,7 @@ export default function Consumption() {
 
    useEffect(() => {
       getBranchQuantities("") ;
+      setShowPopup(false) ;
    }, [loggedUser])
    
    return (
@@ -50,7 +52,8 @@ export default function Consumption() {
             </ol>
          </nav>
 
-         
+         <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
+
          <div className='d-flex justify-content-evenly my-5'>
             <button className='btn bg-main ' onClick={()=>{handleShow("add")}}>Add Consumption</button>
             <button className='btn bg-main position-relative' onClick={()=>{handleShow("get")}}>

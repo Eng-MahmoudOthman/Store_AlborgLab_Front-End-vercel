@@ -33,11 +33,11 @@ import ListUserChat from './Components/ListUserChat/ListUserChat.jsx';
 import ClientChatting from './Components/ClientChatting/ClientChatting.jsx';
 import Report from './Components/Report/Report.jsx';
 import Transfer from './Components/TransferPages/Transfer/Transfer.jsx';
-import UsersList from './Components/UsersList/UsersList.jsx';
-import UsersSummary from './Components/UsersSummary/UsersSummary.jsx';
+// import UsersList from './Components/UsersList/UsersList.jsx';
+// import UsersSummary from './Components/UsersSummary/UsersSummary.jsx';
 import Receive from './Components/ReceivePages/Receive/Receive.jsx';
 import Dashboard from './Components/Dashboard/Dashboard/Dashboard.jsx';
-import Users from './Components/Dashboard/Users/Users.jsx';
+import Users from './Components/Dashboard/Users/Users/Users.jsx';
 import Branches from './Components/Dashboard/Branches/Branches/Branches.jsx';
 import Items from './Components/Dashboard/Items/Items/Items.jsx';
 import Documents from './Components/Dashboard/Documents/Documents/Documents.jsx';
@@ -77,8 +77,8 @@ let routers = createHashRouter([
 		{path:"ListUserChat" , element:<ProtectedRoute><ListUserChat/></ProtectedRoute>} , 
 		{path:"Report" , element:<ProtectedRoute><Report/></ProtectedRoute>} , 
 		{path:"Transfer" , element:<ProtectedRoute><Transfer/></ProtectedRoute>} , 
-		{path:"UsersList" , element:<ProtectedRoute><UsersList/></ProtectedRoute>} , 
-		{path:"UsersSummary" , element:<ProtectedRoute><UsersSummary/></ProtectedRoute>} , 
+		// {path:"UsersList" , element:<ProtectedRoute><UsersList/></ProtectedRoute>} , 
+		// {path:"UsersSummary" , element:<ProtectedRoute><UsersSummary/></ProtectedRoute>} , 
 		{path:"Receive" , element:<ProtectedRoute><Receive/></ProtectedRoute>} , 
 		{path:"showDocuments" , element:<ProtectedRoute><ShowDocuments/></ProtectedRoute>} , 
 		{path:"SignaturePad" , element:<ProtectedRoute><SignaturePad/></ProtectedRoute>} , 
@@ -111,7 +111,7 @@ function App() {
 		setUserToken , 
 		setLoggedUser , 
 		getUserTeam , 
-		socketConnect ,
+		// socketConnect ,
 		loggedUser
 	} = useContext(UserContext) ;
 

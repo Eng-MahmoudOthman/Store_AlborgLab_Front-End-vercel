@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReportContext } from '../../../Context/ReportContext.js';
 import CustomTitle from '../../CustomTitle/CustomTitle.jsx';
@@ -101,8 +101,6 @@ export default function Dashboard() {
                      </div>
                   </div>
             }
-
-
       </Fragment>
    )
 }

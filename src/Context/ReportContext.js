@@ -13,14 +13,16 @@ export default function ReportContextProvider(props){
       const[loading , setLoading] = useState(false)
       const[loginData , setLoginData] = useState({}) ;
       const[adminData , setAdminData] = useState({}) ;
+      const [showPopup, setShowPopup] = useState(false);
+
       const {userToken} = useContext(UserContext) ;
-   
       const header = {
          token:`${process.env.REACT_APP_BEARER_TOKEN} ${userToken || localStorage.getItem("token")}`
       }
    
    
       async function getAllConsumption(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -55,6 +57,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getCurrentConsumption(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -91,6 +94,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getAllQuantity(status , category) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -129,6 +133,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getExpiredQuantity(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -165,6 +170,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getNotExpiredQuantity(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -200,6 +206,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getExpiredQuantityCurrentMonth(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -236,6 +243,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getOrdersPDF(status) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -272,8 +280,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getSpecificOrderPDF(status , id) {
-         console.log(status , id);
-         
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -310,6 +317,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getTransferPDF(status , filter) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -345,6 +353,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getReceivePDF(status , filter) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -380,6 +389,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getOrderBarcodePDF(orderId) {
+         setShowPopup(true);
          setLoading(true);
          let newTab;
          let fileURL;
@@ -408,7 +418,8 @@ export default function ReportContextProvider(props){
             setLoading(false);
          }
       } ;
-      async function getInfoLogin(status) {
+      async function getInfoLogin() {
+         setShowPopup(true);
          setLoading(true);
          try {
             const {data} = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/report/getInfoLogin`, {headers: header});
@@ -422,6 +433,7 @@ export default function ReportContextProvider(props){
          }
       } ;
       async function getAdminData(status) {
+         setShowPopup(true);
          setLoading(true);
          try {
             const {data} = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/report/getAdminData`, {headers: header});
@@ -434,6 +446,7 @@ export default function ReportContextProvider(props){
             setLoading(false);
          }
       } ;
+
    
    return (
       <>
@@ -455,6 +468,9 @@ export default function ReportContextProvider(props){
 
                loading , 
                setLoading ,
+
+               showPopup, 
+               setShowPopup ,
 
                loginData , 
                setLoginData ,

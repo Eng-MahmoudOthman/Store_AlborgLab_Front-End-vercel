@@ -5,11 +5,12 @@ import { QuantityContext } from '../../../Context/QuantityContext.js';
 import { ReportContext } from '../../../Context/ReportContext.js';
 import TimeAgo from '../../TimeAgo/TimeAgo.jsx';
 import Swal from 'sweetalert2'
+import LoadingPopup from '../../LoadingPopup/LoadingPopup.jsx';
 
 
 export default function CurrentReceive() {
    const {getReceive , receive , receiveTransfer , cancelTransfer , loadingTransfer} = useContext(QuantityContext) ;
-   const {getReceivePDF , loading:loadingFile} = useContext(ReportContext) ;
+   const {getReceivePDF , showPopup , setShowPopup , loading:loadingFile} = useContext(ReportContext) ;
    
 
 
@@ -42,6 +43,7 @@ export default function CurrentReceive() {
 
    useEffect(() => {
       getReceive("pending") ;
+      setShowPopup(false) ;
    }, []) ;
 
    
@@ -49,6 +51,7 @@ export default function CurrentReceive() {
       <Fragment>
          <div className='container'>
             <div className='row g-1 mb-2'>
+               <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
                {loadingFile? 
                      <div className="col-4">
                         <button className="btn bg-main btn-sm w-100"> <Loading color="white"  width={20} height={20} strokeWidth="6"/></button>

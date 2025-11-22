@@ -1,12 +1,13 @@
 import { Fragment, useContext, useEffect } from 'react' ;
-import { UserContext } from '../../../Context/UserContext.js';
-import Loading from '../../Loading/Loading.jsx';
-import TimeAgo from '../../TimeAgo/TimeAgo.jsx';
+import { UserContext } from '../../../../Context/UserContext.js';
+import Loading from '../../../Loading/Loading.jsx';
+import TimeAgo from '../../../TimeAgo/TimeAgo.jsx';
 import Swal from 'sweetalert2';
-import { BranchContext } from '../../../Context/BranchContext.js';
-import { CompanyContext } from '../../../Context/CompanyContext.js';
-import CustomTitle from '../../CustomTitle/CustomTitle.jsx';
+import { BranchContext } from '../../../../Context/BranchContext.js';
+import { CompanyContext } from '../../../../Context/CompanyContext.js';
+import CustomTitle from '../../../CustomTitle/CustomTitle.jsx';
 import { Link } from 'react-router-dom';
+import SendMessageUsers from '../SendMessageUsers/SendMessageUsers.jsx';
 import style from "./users.module.css" ;
 
 
@@ -151,7 +152,11 @@ export default function Users() {
                </form>
             </div>
 
-            <p><i className="fa-solid fa-mug-saucer mx-2"></i> Users Count  : {users.length || 0}</p>
+            <div className='d-flex justify-content-between align-items-center'>
+               <p><i className="fa-solid fa-mug-saucer mx-2"></i> Users Count  : {users.length || 0}</p>
+               <p data-bs-toggle="modal" data-bs-target="#sendMessageUsers" className=' mx-3 btn btn-outline-success'>Send Message</p>
+            </div>
+            <SendMessageUsers/>
 
             {loading? 
                   <Loading type="large" color="gray"/> 

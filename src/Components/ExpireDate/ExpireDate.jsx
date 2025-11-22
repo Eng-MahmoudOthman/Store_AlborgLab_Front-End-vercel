@@ -6,6 +6,7 @@ import TimeAgo from '../TimeAgo/TimeAgo.jsx';
 import { useState } from 'react';
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
+import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
 
 
 
@@ -14,7 +15,7 @@ import Loading from '../Loading/Loading.jsx';
 export default function ExpireDate() {
    const[isLoading , setIsLoading] = useState() ;
    const{ getBranchQuantitiesExpired , quantityExpired  , deleteQuantityExpired , loading} = useContext(QuantityContext) ;
-   const {getExpiredQuantity , loading:loadingFile} = useContext(ReportContext) ;
+   const {getExpiredQuantity , showPopup , setShowPopup , loading:loadingFile} = useContext(ReportContext) ;
    
 
 
@@ -36,6 +37,7 @@ export default function ExpireDate() {
 
    useEffect(() => {
       getBranchQuantitiesExpired("") ;
+      setShowPopup(false) ;
    }, [])
 
    return (
@@ -46,7 +48,7 @@ export default function ExpireDate() {
                <li className="breadcrumb-item active" aria-current="page">ExpireDate</li>
             </ol>
          </nav>
-
+         <LoadingPopup show={showPopup} onClose={() => setShowPopup(false)} />
          <div className='container my-5'>
             <h1>Expired Date</h1>
             <div className=''>

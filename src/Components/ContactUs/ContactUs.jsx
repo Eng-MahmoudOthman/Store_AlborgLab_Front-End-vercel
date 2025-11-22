@@ -14,16 +14,12 @@ export default function ContactUs() {
    const [error , setError] = useState(null)
    const [loading , setLoading] = useState(false)
    
-
-   
-   
-   
    
    async function submitComplaint(values , {resetForm}){
-      console.log(values);
       setLoading(true)
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/users/complaint` , values)
       .then(({data})=>{
+         setError(null) ;
          notification("success" , data.message )
          setLoading(false) ;
          resetForm()
@@ -34,15 +30,11 @@ export default function ContactUs() {
          setLoading(false)
       })
    }
-   
-   
    const validationSchema = Yup.object({
       message:Yup.string().required().trim() ,
       phone:Yup.string().trim() ,
    })
-   
-
-   let formik = useFormik({
+   const formik = useFormik({
       initialValues:{
          message:""  ,
          phone:""  ,
@@ -65,8 +57,6 @@ export default function ContactUs() {
             <section className={`${style.fixedBottom}`}>
                <div className="text-center my-3">
                   <Link to={`https://wa.me/201126999142`} className={`btn`}>
-                     {/* <i className="fas fa-arrow-right"></i>
-                     WhatsApp */}
                      <img src="/WhatsApp.png" className='w-100' alt="WhatsApp" srcset="" />
                   </Link>
                </div>
@@ -87,12 +77,13 @@ export default function ContactUs() {
                </p>
 
                <ul>
-                  <li className='p-0 m-0'>تنظيم البيانات</li>
-                  <li className='p-0 m-0'>متابعة المخزون</li>
-                  <li className='p-0 m-0'>ضبط الاستهلاك</li>
-                  <li className='p-0 m-0'>سهولة جرد المخزن</li>
-                  <li className='p-0 m-0'>طباعة تقارير للجرد والاستهلاك والطلبية </li>
-                  <li className='p-0 m-0'>تسهيل التواصل بين الفريق</li>
+                  <li className='p-0 m-0 '>🧪  تنظيم البيانات </li>
+                  <li className='p-0 m-0'>🧪  متابعة المخزون</li>
+                  <li className='p-0 m-0'>🧪  متابعة منتهية الصلاحية</li>
+                  <li className='p-0 m-0'>🧪  ضبط الاستهلاك</li>
+                  <li className='p-0 m-0'>🧪  سهولة جرد المخزن</li>
+                  <li className='p-0 m-0'>🧪  طباعة تقارير للجرد والاستهلاك والطلبية </li>
+                  <li className='p-0 m-0'>🧪  تسهيل التواصل بين الفريق</li>
                </ul>
 
                <p className='p-0 m-0'>
