@@ -127,7 +127,7 @@ export default function Login(){
                      <p dir="rtl" className="sub-title text-center m-0"> 😍 Glad to have you here again </p>
                      <p className="sub-title text-center">Please Enter Your ID and Correct Password.</p>
 
-                     <form action="" className=" px-2   border border-2 rounded-3 shadow-sm" onSubmit={formik.handleSubmit}>
+                     <form action="" className=" px-2 bg-white  border border-2 rounded-3 shadow-sm" onSubmit={formik.handleSubmit}>
 
                         {error?<p className="text-danger">{error}</p> :""}
 

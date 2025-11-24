@@ -1,5 +1,20 @@
 
 
+
+
+/* Icon WhatsApp */
+.fixedBottom {
+   position: fixed;
+   left: 0px;
+   bottom: 60px;
+   width: 60px;
+   height: 60px;
+   z-index: 999;
+}
+
+
+
+
 .mainSection {
    /* background-image: url("../../Assets/background/background.jpg"); */
    background-attachment: fixed;
@@ -73,6 +88,21 @@
    opacity: 10%; 
    z-index: -1;
 }
+
+
+
+/*Start Media Screen */
+   /* Small Screen */
+   @media (min-width: 768px) {
+      /* Icon WhatsApp */
+      .fixedBottom {
+         left: 10px;
+         bottom: 20px;
+         width: 100px;
+         height: 100px;
+      }
+   }
+/*End Media Screen */
 
 
 

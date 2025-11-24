@@ -175,7 +175,7 @@ export default function Inventory() {
                                  {
                                     filteredProducts.length?
                                        filteredProducts.map((ele)=>
-                                          <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 py-1 p-0 position-relative`}>
+                                          <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-1 p-0 position-relative`}>
                                              <div className={`${style.title} row align-item-center mx-2`}>
                                                 <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy mx-2"></i>{ele.name}</p>
                                                 <p className='col-2 p-0 m-0'>
@@ -267,7 +267,7 @@ export default function Inventory() {
                                  {
                                     quantities.length?
                                        quantities.map((ele)=>
-                                          <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-0`}>
+                                          <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-1`}>
                                              <div className={`${style.title} row align-item-center mx-2`}>
                                                 <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy mx-2"></i>{ele.name}</p>
                                                 {/* <i className="fa-solid fa-bong"></i> */}

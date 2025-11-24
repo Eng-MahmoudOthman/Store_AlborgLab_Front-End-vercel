@@ -57,6 +57,15 @@ export default function MainPage() {
          {   console.log(loginData)
 }
          <div className={`container`}> 
+
+            <section className={`${style.fixedBottom}`}>
+               <div className="text-center my-3">
+                  <Link to={`https://chat.whatsapp.com/GrBqCbZWp2N765GNFSwX9U`} className={`btn`}>
+                     <img src="/WhatsApp.png" className='w-100' alt="WhatsApp" srcset="" />
+                  </Link>
+               </div>
+            </section>
+            
             {/* Info Section with Slider */}
             <section className="home-slider p-3 rounded-2 mb-2">
                <div className='mb-2'>

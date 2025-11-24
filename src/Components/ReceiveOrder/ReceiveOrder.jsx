@@ -51,7 +51,7 @@ export default function ReceiveOrder() {
       // --------- API: fetch all products (on mount) ---------
       const getAllProducts = useCallback(async () => {
          try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/item?all=true`);
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/item?all=true` ,  {headers:header} );
             if (data?.message === "success") setProducts(data.items || []);
          } catch (err) {
             notification("error", err.response?.data?.message || "Failed to load products");
@@ -99,7 +99,7 @@ export default function ReceiveOrder() {
 
       const orderValidation = Yup.object().shape({
          title: Yup.string().min(2, "Title Should be More than 2").max(30, "Title less than 100").required("Title is Required").trim(),
-         delivery_number: Yup.number(),
+         delivery_number: Yup.number().required("Delivery Number is Required"),
       });
 
       const formikOrder = useFormik({
@@ -157,6 +157,7 @@ export default function ReceiveOrder() {
             setFilteredItems([]);
             setScanBarcode(false);
             resetForm();
+            playSound();
          } catch (err) {
             notification("error", "Failed to add item");
          }
@@ -218,12 +219,18 @@ export default function ReceiveOrder() {
 
 
 
+      const playSound = () => {
+         const audio = new Audio("/audio/order.mp3");
+         audio.play();
+      };
+
    // --------- Render ---------
    return (
       <Fragment>
          <CustomTitle title="Order Received" />
          <div className="container">
                <h1 className="main-header my-4">Receive Order</h1>
+               <button className="btn btn-success" onClick={()=>{playSound()}}>Click</button>
                <p className="m-0"><i className="fa-solid fa-mug-saucer mx-2 main-color"></i> Item Count  : {itemCount || 0}</p>
 
                <div className="row">

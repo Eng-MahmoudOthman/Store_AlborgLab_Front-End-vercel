@@ -141,7 +141,7 @@ export default function UserContextProvider(props){
    } ;
    async function getUserTeam (branchId){    
       setLoading(true);
-      await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/users?branch=${branchId}`)
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/users?branch=${branchId}` ,  {headers:header})
       .then(({data})=>{
          if(data.message === "success"){
             setTeam(data.users);

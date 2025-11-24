@@ -113,7 +113,7 @@ export default function OrderLoggedBranch() {
                   {
                      orders.length? 
                         orders.map((ele)=>
-                           <div key={ele._id} className={`${style.orderCart} container border border-2 rounded-2 my-3 p-0  position-relative`}>
+                           <div key={ele._id} className={`${style.orderCart} container border border-2 rounded-2 my-3 p-1  position-relative`}>
                               <div className={`${style.title} row align-item-center mx-2`}>
                                  <p className='col-7 text-danger'>{ele.title}</p>
                                  <p className='col-2 text-danger'>{ele.delivery_number}</p>

@@ -37,8 +37,6 @@ export default function CompanyContextProvider(props){
       })
    }
 
-
-
    return (
       <>
          <CompanyContext.Provider value={{

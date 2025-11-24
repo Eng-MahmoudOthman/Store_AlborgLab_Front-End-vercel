@@ -99,7 +99,7 @@ export default function BranchContextProvider(props){
    async function addBranch(values){
       setLoading(true) ;
       try {
-         const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/branch` , {...values} ,  {headers:header} )
+         const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/branch` , values ,  {headers:header} )
          if(data.message === "success"){
             setLoading(false);
             getBranches("");

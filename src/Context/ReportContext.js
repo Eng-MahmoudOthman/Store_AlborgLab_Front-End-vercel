@@ -447,7 +447,6 @@ export default function ReportContextProvider(props){
          }
       } ;
 
-   
    return (
       <>
          <ReportContext.Provider value={{

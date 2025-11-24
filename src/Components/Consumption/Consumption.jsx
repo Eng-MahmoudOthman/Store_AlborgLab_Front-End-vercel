@@ -165,7 +165,7 @@ export default function Consumption() {
                            {
                               consumption.length? 
                                  consumption.map((ele)=>
-                                    <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 py-2 p-0`}>
+                                    <div key={ele._id} className={`${style.quantityCart} container border border-2 rounded-2 my-3 p-1`}>
                                        <div className={`${style.title} row align-item-center mx-4 `}>
                                           <p className='col-10 text-success p-0 m-0'><i className="fa-solid fa-trophy me-2"></i>{ele.item?.name}</p>
                                           <p className='col-2 p-0 m-0'>
@@ -192,7 +192,7 @@ export default function Consumption() {
                                                 <tfoot>
                                                    <tr>
                                                       <td colspan="4"  className='m-0 p-0'>
-                                                         <button className='btn btn-sm btn-success w-75 p-0 my-0' onClick={()=>{handleCheckedConsumption(ele.item._id)}}>Consumped Checked ✔</button>
+                                                         <button className='btn btn-sm bg-main w-75 p-0 my-0' onClick={()=>{handleCheckedConsumption(ele.item._id)}}>Consumped Checked ✔</button>
                                                       </td>
                                                    </tr>
                                                 </tfoot>
