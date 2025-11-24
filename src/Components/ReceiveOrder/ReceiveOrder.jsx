@@ -230,7 +230,6 @@ export default function ReceiveOrder() {
          <CustomTitle title="Order Received" />
          <div className="container">
                <h1 className="main-header my-4">Receive Order</h1>
-               <button className="btn btn-success" onClick={()=>{playSound()}}>Click</button>
                <p className="m-0"><i className="fa-solid fa-mug-saucer mx-2 main-color"></i> Item Count  : {itemCount || 0}</p>
 
                <div className="row">

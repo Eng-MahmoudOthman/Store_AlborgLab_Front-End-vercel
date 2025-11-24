@@ -44,7 +44,15 @@ export default function DocumentContextProvider(props){
       async function AddDocument(formData){
          setLoading(true) ;
          try {
-            const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/document` , formData ,  {headers:header} )
+            const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/document` , formData , {
+               headers: header,
+               // onUploadProgress: (progressEvent) => {
+               //    const percent = Math.round(
+               //       (progressEvent.loaded * 100) / progressEvent.total
+               //    );
+               //    console.log("Uploads", percent);
+               // },
+            } )
             if(data.message === "success"){
                setLoading(false);
                getDocuments("");
