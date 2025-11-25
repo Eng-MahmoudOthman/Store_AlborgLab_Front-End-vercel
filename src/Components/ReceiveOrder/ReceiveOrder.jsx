@@ -14,7 +14,7 @@ import style from "./receiveOrder.module.css";
 // - Clear separation of concerns
 // - listItem = payload items (will be sent to backend)
 // - listView = items used for rendering with display-only fields
-// - products = global product list (never mutated on delete)
+// - Items = global product list (never mutated on delete)
 // - delete by index (keeps duplicates support)
 // - debounced search, controlled add/remove
 
@@ -25,8 +25,8 @@ export default function ReceiveOrder() {
       const [loading, setLoading] = useState(false);
       const [scanBarcode, setScanBarcode] = useState(false);
 
-      // products = all products from server (do NOT mutate this array)
-      const [products, setProducts] = useState([]);
+      // Items = all Items from server (do NOT mutate this array)
+      const [Items, setItems] = useState([]);
 
       // listItem: minimal payload objects that will be posted to server
       // e.g. { item: productId, item_quantity, expired_date }
@@ -48,19 +48,19 @@ export default function ReceiveOrder() {
          token: `${process.env.REACT_APP_BEARER_TOKEN} ${userToken || localStorage.getItem("token")}`,
       }), [userToken]);
 
-      // --------- API: fetch all products (on mount) ---------
-      const getAllProducts = useCallback(async () => {
+      // --------- API: fetch all Items (on mount) ---------
+      const getAllItems = useCallback(async () => {
          try {
             const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/item?all=true` ,  {headers:header} );
-            if (data?.message === "success") setProducts(data.items || []);
+            if (data?.message === "success") setItems(data.items || []);
          } catch (err) {
-            notification("error", err.response?.data?.message || "Failed to load products");
+            notification("error", err.response?.data?.message || "Failed to load Items");
          }
       }, []);
 
       useEffect(() => {
-         getAllProducts();
-      }, [getAllProducts]);
+         getAllItems();
+      }, [getAllItems]);
 
 
 
@@ -178,7 +178,7 @@ export default function ReceiveOrder() {
          }
          setLoadingSearch(true);
          try {
-            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/item?keyword=${encodeURIComponent(keyword)}`);
+            const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/item?keyword=${encodeURIComponent(keyword)}`,  {headers:header});
             setFilteredItems(data.items || []);
          } catch (err) {
             console.error(err);
@@ -352,7 +352,7 @@ export default function ReceiveOrder() {
                                  required
                               >
                                  <option value="">Choose Specific item</option>
-                                 {products.map((ele) => (
+                                 {Items.map((ele) => (
                                  <option key={ele._id} value={`${ele._id}+${ele.name}+${ele.item_s_code}`}>
                                     {ele.item_s_code} - {ele.name}
                                  </option>
