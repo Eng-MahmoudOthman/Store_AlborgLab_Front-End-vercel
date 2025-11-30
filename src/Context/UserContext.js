@@ -139,7 +139,10 @@ export default function UserContextProvider(props){
          notification("error" , error.response.data.message)
       })
    } ;
-   async function getUserTeam (branchId){    
+   async function getUserTeam (branchId){  
+      const header = {
+         token:`${process.env.REACT_APP_BEARER_TOKEN} ${userToken || localStorage.getItem("token")}`
+      }
       setLoading(true);
       await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/users?branch=${branchId}` ,  {headers:header})
       .then(({data})=>{

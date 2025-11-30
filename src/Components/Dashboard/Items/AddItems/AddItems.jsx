@@ -26,7 +26,7 @@ export default function AddItems({categories}) {
 
    const validationSchema = Yup.object({
       name:Yup.string().min(2 , "Name Should be More than 2").max(100 , "Name less than 50").required("Name is Required").trim() ,
-      description:Yup.string().min(2 , "Name Should be More than 2").max(500 , "Name less than 50").required("Name is Required").trim() ,
+      description:Yup.string().min(2 , "Description Should be More than 2").max(500 , "Description less than 50").required("Description is Required").trim() ,
       item_s_code:Yup.string().required().trim() ,
       measure_unit: Yup.string().required() ,
       category:Yup.string().required().trim() ,

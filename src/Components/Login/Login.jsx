@@ -46,7 +46,7 @@ export default function Login(){
             let decoded = jwtDecode(token);
 
             //& Get User Team When Refresh :
-            getUserTeam(decoded.branchId) ;
+            await getUserTeam(decoded.branchId) ;
 
             setLoggedUser(decoded) ;
             //& Set Main Color From Database :
@@ -93,13 +93,13 @@ export default function Login(){
 
 
 
-   let validationSchema = Yup.object({
+   const validationSchema = Yup.object({
       employeeCode:Yup.string().required().trim() ,
       password:Yup.string().required().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]?).{7,}$/ , "should be Password Start UpperCase And Contain 8 Character And Contain any (@#$%&*)") ,
    })
 
 
-   let formik = useFormik({
+   const formik = useFormik({
       initialValues:{
          employeeCode:"" ,
          password:"" ,

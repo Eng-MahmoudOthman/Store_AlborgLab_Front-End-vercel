@@ -54,10 +54,7 @@ export default function MainPage() {
 
    return ( 
       <div className={` ${style.mainSection}`}>
-         {   console.log(loginData)
-}
          <div className={`container`}> 
-
             <section className={`${style.fixedBottom}`}>
                <div className="text-center my-3">
                   <Link to={`https://chat.whatsapp.com/GrBqCbZWp2N765GNFSwX9U`} className={`btn`}>
