@@ -124,7 +124,7 @@ export default function Consumption() {
                                  <button onClick={()=>{getCurrentConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
                               </div>
                               <div className="col-2">
-                                 <button onClick={()=>{getCurrentConsumption("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                                 <button onClick={()=>{getCurrentConsumption("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                               </div>
                            </>
                         }
@@ -146,7 +146,7 @@ export default function Consumption() {
                                  <button onClick={()=>{getAllConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                               </div>
                               <div className="col-2">
-                                 <button onClick={()=>{getAllConsumption("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                                 <button onClick={()=>{getAllConsumption("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                               </div>
                            </>
                         }

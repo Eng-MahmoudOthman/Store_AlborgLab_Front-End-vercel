@@ -25,7 +25,7 @@
 .sidIcon {
    width: 50px;
    background-color: rgb(242, 237, 237);
-   top: 20px;
+   top: 10px;
    right: -60px;
    transition: var(--main-transition);
    -webkit-transition: var(--main-transition);
@@ -35,7 +35,7 @@
 }
 
 .sidIcon i{
-   font-size: 20px;
+   font-size: 18px;
    transition: var(--main-transition);
    -webkit-transition: var(--main-transition);
    -moz-transition: var(--main-transition);
@@ -47,5 +47,5 @@
 }
 
 .quantityCart:hover .sidIcon{
-   right: 10px;
+   right: 5px;
 }

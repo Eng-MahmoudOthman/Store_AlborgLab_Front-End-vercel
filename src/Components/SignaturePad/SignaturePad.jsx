@@ -20,6 +20,7 @@ export default function SignaturePad({ userId }) {
       AddSignature(signatureBase64);
       setSignature(signatureBase64);
    };
+      
 
    const handleClear = () => {
       setSignature(null);
@@ -43,10 +44,12 @@ export default function SignaturePad({ userId }) {
                   <SignatureCanvas
                      ref={sigRef}
                      penColor="black"
+                     minWidth={0.8}      // أقل سمك للخط
+                     maxWidth={0.8} 
                      // penColor={mainColor || "black"}
                      canvasProps={{
-                        width: 200,
-                        height: 100,
+                        width: 240,
+                        height: 90,
                         className: "border border-dark rounded shadow"
                      }}
                   />

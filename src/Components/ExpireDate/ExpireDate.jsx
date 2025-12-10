@@ -71,7 +71,7 @@ export default function ExpireDate() {
                            <button onClick={()=>{getExpiredQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                      </>
                   }

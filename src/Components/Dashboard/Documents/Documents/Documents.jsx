@@ -91,7 +91,8 @@ export default function Documents() {
                               <p className='m-0 p-0 d-flex justify-content-between'><span className='fw-bold'>Num: {ele.itemNumber || 1000}</span> <TimeAgo  showTimeOnly={true} createdAt={ele.createdAt} /></p>                              
                               <p className='m-0 p-0'><span className='fw-bold'>Title: </span>{ele.title}</p>
                               <p className='m-0 p-0'><span className='fw-bold'>Description: </span>{ele.description}</p>
-                              <p className='m-0 p-0 '>Created At : {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Created At : </span>{new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Added By: </span>{ele.createdBy?.name || "Super Admin"}</p>
                            </div>
 
                            <div className={`${style.sidIcon} text-center rounded-2 position-absolute text-warning bg-warning-subtle`}>

@@ -32,7 +32,7 @@ export default function AllReceive() {
                         <button onClick={()=>{getReceivePDF("download" , "receive")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
                      </div>
                      <div className="col-2">
-                        <button onClick={()=>{getReceivePDF("seen" , "receive")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                        <button onClick={()=>{getReceivePDF("seen" , "receive")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                      </div>
                   </>
                }

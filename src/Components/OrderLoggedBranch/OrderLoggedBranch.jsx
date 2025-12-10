@@ -1,12 +1,13 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import TimeAgo from '../TimeAgo/TimeAgo.jsx';
-import UploadOrderImage from '../UploadOrderImage/UploadOrderImage.jsx';
+import UploadOrderFile from "../UploadOrderFile/UploadOrderFile.jsx"
 import style from "./orderLoggedBranch.module.css" ;
 import { OrderContext } from '../../Context/OrderContext.js';
 import Swal from 'sweetalert2';
 import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
 import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
+import { Link } from 'react-router-dom';
 
 
 
@@ -94,7 +95,7 @@ export default function OrderLoggedBranch() {
                         <button onClick={()=>{getOrdersPDF("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                      </div>
                      <div className="col-2">
-                        <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                        <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                      </div>
                   </>
                }
@@ -125,7 +126,8 @@ export default function OrderLoggedBranch() {
 
                               <div>
                                  <details className='text-center'>
-                                    <p>Created At : {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                                    <p className='m-0 p-0'>Created At : {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                                    <p className='m-0 p-0'>Created By : {ele.createdBy?.name}</p>
                                     <summary className={`m-auto w-50 bg-main mb-1`} >Details <span className='d-inline-block mx-3'>[ {ele.orderItems.length} ]</span> Num: {ele.itemNumber}</summary>
                                     <div className='row justify-content-evenly my-2 p-2'>
                                        {loadingFile? 
@@ -144,9 +146,9 @@ export default function OrderLoggedBranch() {
                                                 <button onClick={()=>{getOrderBarcodePDF(ele._id)}} className='btn btn-info btn-sm w-100 p-0'>Barcode<i className="fa-solid fa-barcode mx-1"></i></button>
                                              </div> */}
                                              <div className="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} type="button" className="btn btn-sm btn-outline-success">Download<i className="fa-solid fa-download mx-1"></i></button>
-                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}}  type="button" className="btn btn-sm btn-outline-success">Print<i className="fa-solid fa-eye mx-1"></i></button>
-                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} type="button" className="btn btn-sm btn-outline-success">Barcode<i className="fa-solid fa-barcode mx-1"></i></button>
+                                                <button onClick={()=>{handleSpecificOrderPDF("download" , ele._id)}} type="button" className="btn btn-sm btn-outline-success"><i className="fa-solid fa-download mx-1"></i></button>
+                                                <button onClick={()=>{handleSpecificOrderPDF("seen" , ele._id)}}  type="button" className="btn btn-sm btn-outline-success"><i className="fa-solid fa-print mx-1"></i></button>
+                                                <button onClick={()=>{getOrderBarcodePDF(ele._id)}} type="button" className="btn btn-sm btn-outline-success"><i className="fa-solid fa-barcode mx-1"></i></button>
                                              </div>
                                           </>
                                        }
@@ -165,10 +167,10 @@ export default function OrderLoggedBranch() {
                                           <tbody>
                                              {ele.orderItems.map((order) => (
                                                 <tr key={order.itemName}>
-                                                <td>{order.itemName}</td>
-                                                <td>{order.item_s_code}</td>
-                                                <td>{order.item_quantity}</td>
-                                                <td className={`${style.expired}`}>{new Date(order.expired_date).toISOString().slice(0, 10)}</td>
+                                                   <td>{order.itemName}</td>
+                                                   <td>{order.item_s_code}</td>
+                                                   <td>{order.item_quantity}</td>
+                                                   <td className={`${style.expired}`}>{new Date(order.expired_date).toISOString().slice(0, 10)}</td>
                                                 </tr>
                                              ))}
                                           </tbody>
@@ -176,15 +178,22 @@ export default function OrderLoggedBranch() {
 
 
                                        <div>
-                                          <button onClick={()=>{setStatus("add")}} className={`${style.btnItem} btn btn-success btn-sm m-1 p-0  ${style.showBtn}`}>Add Images</button>
-                                          <button onClick={()=>{setStatus("display")}} className={`${style.btnItem} btn btn-success btn-sm m-1 p-0  ${style.showBtn}`}>Show Images</button>
+                                          <button onClick={()=>{setStatus("add")}} className={`${style.btnItem} btn btn-success  m-1 p-0  ${style.showBtn}`}>Upload File</button>
+                                          {ele.pdf?.secure_url?
+                                                <button  className={`${style.btnItem} btn btn-success m-1 p-0  ${style.showBtn}`}>
+                                                   <Link target='_blank' to={ele.pdf?.secure_url}>Show File</Link>
+                                                </button>
+                                             :
+                                                ""
+                                          }
+
                                        </div>
                                        {status === "add"? 
                                           <div>
-                                             <UploadOrderImage orderId={ele._id}/>
+                                             <UploadOrderFile orderId={ele._id}/>
                                           </div> : ""
                                        }
-                                       {status === "display"? 
+                                       {/* {status === "display"? 
                                           <div>
                                              <div className='overflow-scroll py-3 px-2' style={{ display: 'flex', gap: '10px'}}>
                                                 {ele.images.length? ele.images.map(({secure_url}, i) => (
@@ -197,7 +206,7 @@ export default function OrderLoggedBranch() {
                                                 )) : <p className='col-12 text-danger fs-6 fw-bold'>لا يوجد اى صور خاصة بهذة الطلبية لعرضها</p>}
                                              </div>
                                           </div> : "" 
-                                       }
+                                       } */}
                                     </div>
                                  </details>
                               </div>

@@ -43,9 +43,25 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+
+
+               // Print PDF :
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
          } catch (error) {
@@ -79,9 +95,24 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+
+               // Print PDF :
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -132,6 +163,60 @@ export default function ReportContextProvider(props){
             setLoading(false);
          }
       } ;
+      async function getQuantity(status) {
+         setShowPopup(true);
+         setLoading(true);
+         let newTab;
+         let fileURL;
+         try {
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/report/allQuantity`, {headers: header , responseType: "blob"});
+            if(status === "download"){
+               // إنشاء رابط مؤقت للملف
+               fileURL = URL.createObjectURL(response.data);
+               // توليد التاريخ الحالي بصيغة YYYY-MM-DD
+               const date = new Date().toISOString().split("T")[0];
+               const fileName = `consumption-report-${date}.pdf`;
+               // إنشاء عنصر تحميل
+               const link = document.createElement("a");
+               link.href = fileURL;
+               link.download = fileName;
+               document.body.appendChild(link);
+               link.click();
+               document.body.removeChild(link);
+               notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
+            }else if (status === "seen"){
+               // newTab = window.open();
+               // if(!newTab){
+               //    notification("error", "المتصفح منع فتح الصفحة. افتح البوب أبس (Popups) من الإعدادات");
+               //    return;
+               // }
+               // fileURL = URL.createObjectURL(response.data);
+               // newTab.location.href = fileURL;
+
+               // Print PDF :
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();  
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
+            }
+            setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
+         } catch (error) {
+            console.error("Error loading report:", error);
+            notification("error" , "Quantity List is Empty")
+            if (newTab) newTab.close();
+         } finally {
+            setLoading(false);
+         }
+      } ;
       async function getExpiredQuantity(status) {
          setShowPopup(true);
          setLoading(true);
@@ -155,9 +240,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -192,9 +290,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
          } catch (error) {
@@ -228,9 +339,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -265,9 +389,24 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();  
+      
+                  // بعد ثانية اقفل الـ URL عشان مايحصلش memory leak
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -302,9 +441,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -338,9 +490,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -374,9 +539,22 @@ export default function ReportContextProvider(props){
                document.body.removeChild(link);
                notification("success" , `تم تحميل التقرير بنجاح (${fileName})`) ;
             }else if (status === "seen"){
-               newTab = window.open();
-               fileURL = URL.createObjectURL(response.data);
-               newTab.location.href = fileURL;
+                        // newTab = window.open();
+                        // fileURL = URL.createObjectURL(response.data);
+                        // newTab.location.href = fileURL;
+               const fileURL = URL.createObjectURL(response.data);
+               const printWindow = window.open(fileURL);
+               if (!printWindow) {
+                  notification("error", "المتصفح منع فتح نافذة الطباعة");
+                  return;
+               }
+               printWindow.onload = () => {
+                  printWindow.focus();
+                  printWindow.print();
+                  setTimeout(() => {
+                     URL.revokeObjectURL(fileURL);
+                  }, 2000);
+               };
             }
    
             setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
@@ -463,6 +641,7 @@ export default function ReportContextProvider(props){
                getOrderBarcodePDF ,
                getInfoLogin ,
                getAdminData ,
+               getQuantity ,
 
 
                loading , 

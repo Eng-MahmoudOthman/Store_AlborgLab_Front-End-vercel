@@ -8,11 +8,14 @@ import { ReportContext } from '../../Context/ReportContext.js';
 import Loading from '../Loading/Loading.jsx';
 import Swal from 'sweetalert2';
 import LoadingPopup from '../LoadingPopup/LoadingPopup.jsx';
+import UpdateQuantity from '../UpdateQuantity/UpdateQuantity.jsx';
 
 
 
 export default function Inventory() {
-   const{ getBranchQuantities , getCategories , categories, quantities , setQuantities , deleteQuantity , loading } = useContext(QuantityContext) ;
+   const [selectedId, setSelectedId] = useState(null);
+
+   const{ getBranchQuantities , getCategories , categories , quantities , getQuantityBarcode , loadingBarcode , deleteQuantity , loading } = useContext(QuantityContext) ;
    const {getAllQuantity  , showPopup , setShowPopup , getExpiredQuantityCurrentMonth , loginData , loading:loadingFile} = useContext(ReportContext) ;
    const{loggedUser} = useContext(UserContext) ;
    
@@ -45,6 +48,8 @@ export default function Inventory() {
       setCategoryName(categoryName && (categoryName.charAt(0).toUpperCase() + categoryName.split("").slice(1).join(""))) ;
 
    } ;
+
+
    function handleDeleteQuantity(id){
       Swal.fire({
          title:"Delete this Quantity? Are you sure?" ,
@@ -67,20 +72,22 @@ export default function Inventory() {
    }
 
 
+   async function handleBarcode(id){
+      await getQuantityBarcode(id);
+   }
+
+
+
+
+
 
    useEffect(() => {
       getBranchQuantities(""  , "false") ;
       setShowPopup(false) ;
    }, [loggedUser])
-
    useEffect(() => {
       getCategories(true);
    }, [])
-
-
-
-
-
 
 
 
@@ -95,6 +102,7 @@ export default function Inventory() {
 
    
 
+   if(loadingBarcode) return <h1 className='mt-5'>Print Barcode Loading...</h1>
    return (
       <Fragment>
          <nav aria-label="breadcrumb" className='container bg-body-secondary'>
@@ -145,7 +153,7 @@ export default function Inventory() {
                                           <button onClick={()=>{getAllQuantity("download" , filter)}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                                        </div>
                                        <div className="col-2">
-                                          <button onClick={()=>{getAllQuantity("seen" , filter)}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                                          <button onClick={()=>{getAllQuantity("seen" , filter)}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                                        </div>
                                     </>
                                  }
@@ -205,19 +213,35 @@ export default function Inventory() {
                                                                {ele.expired_date < Date.now()? <span className='fw-bold mx-4'>Expired</span> : ""}
                                                             </td>
                                                          </tr>
+                                                         <tr className='text-center  m-0 main-color'>
+                                                            <i className="fa-solid main-color rounded-circle p-0 mx-1 fa-circle-user"></i>
+                                                            Added By :{ele.createdBy.name}
+                                                         </tr>
                                                    </tbody>
                                                 </table>
                                              </div>
 
-                                             <div onClick={()=>{handleDeleteQuantity(ele._id)}}  className={`${style.sidIcon} text-center rounded-2 position-absolute text-danger bg-danger-subtle`}>
-                                                <p className='m-0 p-0 my-3'>
+                                             <div className={`${style.sidIcon} text-center rounded-2 position-absolute text-danger bg-danger-subtle`}>
+                                                <p onClick={() => setSelectedId(ele._id)} data-bs-toggle="modal" data-bs-target="#UpdateQuantity"  className='m-0 p-0 my-1'>
+                                                   <i className="fa-solid fa-pen-to-square text-primary"></i>
+                                                </p>
+
+                                                <p onClick={()=>{handleBarcode(ele._id)}}  className='m-0 p-0 my-1'>
+                                                   <i className="fa-solid fa-barcode text-success"></i>
+                                                </p> 
+
+                                                <p onClick={()=>{handleDeleteQuantity(ele._id)}}  className='m-0 p-0 my-2'>
                                                    <i className="fa-solid fa-trash"></i>
-                                                </p>                             
+                                                </p> 
+                                                
+                                                
                                              </div>
+
                                           </div>
                                        ) 
                                     : <p className='text-danger fw-bold'>Quantity List Is Empty</p>
                                  }
+                                 <UpdateQuantity id={selectedId} />
                               </>
                            }
 
@@ -247,7 +271,7 @@ export default function Inventory() {
                                           <button onClick={()=>{getExpiredQuantityCurrentMonth("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                                        </div>
                                        <div className="col-2">
-                                          <button onClick={()=>{getExpiredQuantityCurrentMonth("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                                          <button onClick={()=>{getExpiredQuantityCurrentMonth("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                                        </div>
                                     </>
                                  }
@@ -289,7 +313,7 @@ export default function Inventory() {
                                                    </thead>
                                                    <tbody>
                                                          <tr key={ele.name}>
-                                                            <td className='text-primary fw-bold'>{ele.item.item_s_code}</td>
+                                                            <td className='text-primary fw-bold'>{ele.item?.item_s_code}</td>
                                                             <td>{ele.item_quantity}</td>
                                                             <td>{ele.delivery_number}</td>
                                                             <td className={ele.expired_date < Date.now()? "text-danger" : ""}>

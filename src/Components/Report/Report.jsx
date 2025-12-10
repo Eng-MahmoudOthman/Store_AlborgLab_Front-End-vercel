@@ -11,7 +11,7 @@ export default function Report() {
    const {
       getAllConsumption , 
       getCurrentConsumption , 
-      getAllQuantity ,
+      getQuantity ,
       getExpiredQuantity ,
       getNotExpiredQuantity ,
       getExpiredQuantityCurrentMonth ,
@@ -53,10 +53,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getCurrentConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getCurrentConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getCurrentConsumption("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getCurrentConsumption("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الأستهلاك الحالى</button>
@@ -68,10 +68,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getAllConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getAllConsumption("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getAllConsumption("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getAllConsumption("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الأستهلاك الكلى</button>
@@ -82,10 +82,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getAllQuantity("download" , "")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getQuantity("download" , "")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getAllQuantity("seen" , "")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getQuantity("seen" , "")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الاصناف</button>
@@ -96,10 +96,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getExpiredQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getExpiredQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الاصناف منتهية الصلاحية</button>
@@ -110,10 +110,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getNotExpiredQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getNotExpiredQuantity("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getNotExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getNotExpiredQuantity("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الاصناف غير منتهى الصلاحية </button>
@@ -124,10 +124,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getExpiredQuantityCurrentMonth("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getExpiredQuantityCurrentMonth("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getExpiredQuantityCurrentMonth("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getExpiredQuantityCurrentMonth("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد الاصناف المنتهية خلال شهر  </button>
@@ -137,10 +137,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getTransferPDF("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getTransferPDF("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getTransferPDF("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getTransferPDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد كل الاصناف المرسلة</button>
@@ -150,10 +150,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getReceivePDF("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getReceivePDF("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getReceivePDF("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getReceivePDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد كل الاصناف المستلمة</button>
@@ -164,10 +164,10 @@ export default function Report() {
 
                      <div className='row g-1 my-2'>
                         <div className="col-2">
-                           <button onClick={()=>{getOrdersPDF("download")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
+                           <button onClick={()=>{getOrdersPDF("download")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                         </div>
                         <div className="col-2">
-                           <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                           <button onClick={()=>{getOrdersPDF("seen")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                         </div>
                         <div className="col-8">
                            <button className='btn bg-main btn-sm w-100'>جرد جميع الطلبيات </button>

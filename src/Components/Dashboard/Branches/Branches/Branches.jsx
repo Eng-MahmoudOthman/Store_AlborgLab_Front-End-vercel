@@ -111,7 +111,8 @@ export default function Branches() {
                               <p className='m-0 p-0'><span className='fw-bold'>Phone: </span>{ele.phone}</p>
                               <p className='m-0 p-0'><span className='fw-bold'>Email: </span>{ele.email}</p>
                               <p className='m-0 p-0'><span className='fw-bold'>Company: </span>{ele.company.name}</p>
-                              <p className='m-0 p-0 '>Created At : {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Created At : </span>{new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Added By: </span>{ele.createdBy?.name || "Super Admin"}</p>
                            </div>
 
                            <div className={`${style.sidIcon} text-center rounded-2 position-absolute text-info bg-info-subtle`}>
@@ -128,7 +129,7 @@ export default function Branches() {
                               <p  className='m-0 p-0 my-2'><i className="fa-solid fa-code-branch text-body-secondary"></i></p>
 
 
-                              <p className='m-0 p-0 my-2'><i class="fa-solid fa-pen-to-square text-body-secondary"></i></p>
+                              <p className='m-0 p-0 my-2'><i  className="fa-solid fa-pen-to-square text-body-secondary"></i></p>
 
                               
                               {

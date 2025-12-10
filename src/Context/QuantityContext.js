@@ -14,6 +14,7 @@ export default function QuantityContextProvider(props){
 
 
    const [loading , setLoading] = useState(false) ;
+   const [loadingBarcode , setLoadingBarcode] = useState(false) ;
    const [loadingTransfer , setLoadingTransfer] = useState(false) ;
    const [deleteLoading , setDeleteLoading] = useState(false) ;
    const [consumption , setConsumption] = useState([]) ;
@@ -298,10 +299,66 @@ export default function QuantityContextProvider(props){
          }
       })
       .catch((error)=>{
+         notification("error" , error.response.data.message)
          console.log(error.response.data.message);
       })
    } ;
-   
+   async function updateQuantity (id , values){
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/v1/quantity/${id}`  , values ,  {headers:header} )
+      .then(({data})=>{
+         if(data.message === "success"){
+            setQuantities((prev) =>
+               prev.map((ele) =>
+                  ele._id.toString() === data.quantity._id.toString()
+                     ? data.quantity 
+                     : ele
+               )
+            );
+         }
+      })
+      .catch((error)=>{
+         notification("error" , error.response.data.message)
+         console.log(error.response.data.message);
+      })
+   } ;
+   async function getQuantityBarcode(quantityId) {
+      setLoadingBarcode(true);
+      try {
+         const response = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/api/v1/quantity/barcode/${quantityId}`,
+            { headers: header, responseType: "blob" }
+         );
+
+         const fileURL = URL.createObjectURL(response.data);
+
+         // افتح نافذة جديدة
+         const printWindow = window.open(fileURL);
+
+         if (!printWindow) {
+            notification("error", "المتصفح منع فتح نافذة الطباعة");
+            return;
+         }
+
+         // استنى لما الملف يتحمل جوا النافذة
+         printWindow.onload = () => {
+            printWindow.focus();
+            printWindow.print();  
+
+            // بعد ثانية اقفل الـ URL عشان مايحصلش memory leak
+            setTimeout(() => {
+               URL.revokeObjectURL(fileURL);
+            }, 2000);
+         };
+
+         notification("success", "جاري فتح نافذة الطباعة...");
+      } catch (error) {
+         console.error("Error opening print preview:", error.message);
+         notification("error", error.message);
+      } finally {
+         setLoadingBarcode(false);
+      }
+   }
+
    
    return (
       <>
@@ -325,6 +382,8 @@ export default function QuantityContextProvider(props){
                deleteTransfer ,
                deleteItem ,
                addItem ,
+               updateQuantity ,
+               getQuantityBarcode ,
 
 
                quantity , 
@@ -344,6 +403,9 @@ export default function QuantityContextProvider(props){
 
                loading , 
                setLoading ,
+               
+               loadingBarcode , 
+               setLoadingBarcode ,
 
                loadingTransfer , 
                setLoadingTransfer ,

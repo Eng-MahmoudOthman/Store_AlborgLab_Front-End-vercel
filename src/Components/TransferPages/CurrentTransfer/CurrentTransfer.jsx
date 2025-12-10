@@ -54,7 +54,7 @@ export default function CurrentTransfer() {
                         <button onClick={()=>{getTransferPDF("download" , "pending")}} className='btn btn-danger btn-sm w-100' ><i className="fa-solid fa-download"></i></button>
                      </div>
                      <div className="col-2">
-                        <button onClick={()=>{getTransferPDF("seen" , "pending")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-eye"></i></button>
+                        <button onClick={()=>{getTransferPDF("seen" , "pending")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                      </div>
                   </>
                }

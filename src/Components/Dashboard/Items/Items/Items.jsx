@@ -96,7 +96,8 @@ export default function Items() {
                               <p className='m-0 p-0'><span className='fw-bold'>Unit: </span>{ele.measure_unit}</p>
                               <p className='m-0 p-0'><span className='fw-bold'>Category: </span>{ele.category.name}</p>
                               <p className='m-0 p-0'><span className='fw-bold'>Description: </span>{ele.description}</p>
-                              <p className='m-0 p-0 '>Created At : {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Created At :</span> {new Date(ele.createdAt).toISOString().slice(0, 10)}</p>
+                              <p className='m-0 p-0 '><span className='fw-bold'>Added By: </span>{ele.createdBy.name}</p>
                            </div>
 
                            <div className={`${style.sidIcon} text-center rounded-2 position-absolute text-primary bg-primary-subtle`}>

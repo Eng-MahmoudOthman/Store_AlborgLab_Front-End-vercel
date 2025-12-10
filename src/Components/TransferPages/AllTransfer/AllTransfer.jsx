@@ -32,7 +32,7 @@ export default function AllTransfer() {
                         <button onClick={()=>{getTransferPDF("download"  , "receive")}} className='btn btn-danger btn-sm w-100' ><i class="fa-solid fa-download"></i></button>
                      </div>
                      <div className="col-2">
-                        <button onClick={()=>{getTransferPDF("seen"  , "receive")}} className='btn btn-success btn-sm w-100'><i class="fa-solid fa-eye"></i></button>
+                        <button onClick={()=>{getTransferPDF("seen"  , "receive")}} className='btn btn-success btn-sm w-100'><i className="fa-solid fa-print"></i></button>
                      </div>
                   </>
                }
