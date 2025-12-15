@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Store App Alborg ",
+  "name": "Store App Alborg Lab",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "profile1.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
